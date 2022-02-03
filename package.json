@@ -19,6 +19,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.8",
     "nodemailer": "^6.7.2",
+    "react-material-ui-carousel": "^3.1.1",
     "validator": "^13.7.0"
   }
 }

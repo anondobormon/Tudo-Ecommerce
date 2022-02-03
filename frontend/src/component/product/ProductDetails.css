@@ -1,0 +1,28 @@
+.productDetails {
+  width: 100vw;
+  max-width: 100%;
+  padding: 6vmax;
+  background-color: rgb(207, 207, 207);
+  display: flex;
+  box-sizing: border-box;
+}
+.productDetails .details-1 {
+  width: 100%;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2vmax;
+  box-sizing: border-box;
+}
+.productDetails .details-2 {
+  width: 100%;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2vmax;
+  box-sizing: border-box;
+}

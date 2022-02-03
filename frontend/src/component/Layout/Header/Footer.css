@@ -1,0 +1,40 @@
+footer {
+  margin-top: 10vmax;
+  padding: 2vmax;
+  background-color: rgb(34, 33, 33);
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.leftFooter {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.leftFooter > h4 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.leftFooter > p {
+  text-align: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.leftFooter > img {
+  width: 70px;
+  margin: 1vmax;
+  cursor: pointer;
+}
+.midFooter {
+  width: 60%;
+  text-align: center;
+}
+.midFooter > h1 {
+  font-size: 4vmax;
+  color: rgb(255, 217, 0);
+}
+.midFooter > p {
+  min-width: 60%;
+  margin: 1vmax auto;
+}
