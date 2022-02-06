@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import MetaData from "../Layout/MetaData";
 import "./Search.css";
 
 function Search() {
@@ -18,6 +19,7 @@ function Search() {
 
   return (
     <div>
+      <MetaData title="SEARCH -- TUDO STORE" />
       <from className="searchBox">
         <input
           type="text"

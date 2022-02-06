@@ -5,6 +5,9 @@
   scroll-behavior: smooth;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -20,4 +23,14 @@ input[type="number"] {
 }
 .redColor {
   color: red;
+}
+
+:root {
+  --black: #000;
+  --lightBlack: #333333;
+  --deepBlack: #292b2c;
+  --lightgray: #dddddd;
+  --gray: #687188;
+  --pink: #ff324d;
+  --montserrat: font-family: 'Montserrat', sans-serif;
 }

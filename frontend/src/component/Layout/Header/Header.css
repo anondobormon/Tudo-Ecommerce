@@ -1,0 +1,71 @@
+.navbar {
+  max-height: 5rem;
+  height: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.navContainer {
+  max-width: 1300px;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navLogo h2 {
+  font: 500 3rem sans-serif;
+  color: var(--pink);
+}
+.navList {
+  display: flex;
+  align-items: center;
+}
+.navList ul:first-child {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+  font-size: 1.1rem;
+}
+.navList ul li {
+  list-style: none;
+  font: 600 0.8rem Montserrat;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.navList ul li a {
+  text-decoration: none;
+  color: var(--deepBlack);
+  transition: all 0.7s;
+  padding: 5px 0;
+  border-bottom: 2px solid white;
+}
+.navList ul li a:hover {
+  color: var(--pink);
+  border-bottom: 2px solid var(--pink);
+}
+.navList ul:last-child {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+  color: var(--deepBlack);
+  font-size: 1.1rem;
+}
+.cart {
+  position: relative;
+}
+.cart span {
+  position: absolute;
+  top: 0px;
+  right: 1px;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background-color: var(--pink);
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+}

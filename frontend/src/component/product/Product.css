@@ -66,3 +66,17 @@
   top: 10vmax;
   left: 4vmax;
 }
+.categoryBox {
+  padding: 0;
+}
+.category_link {
+  list-style: none;
+  color: rgba(0, 0, 0, 0.67);
+  font: 400 15px Roboto, Arial, sans-serif;
+  margin: 0.4vmax;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.category_link:hover {
+  color: tomato;
+}

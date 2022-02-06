@@ -1,0 +1,89 @@
+.login {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.loginContainer {
+  max-width: 22rem;
+  width: 20rem;
+  min-height: 28rem;
+  display: flex;
+  flex-direction: column;
+}
+.loginContainer h2 {
+  font: 700 2rem montserrat;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--pink);
+}
+.loginContainer form {
+  margin-top: 2rem;
+}
+.loginContainer form label {
+  font: 500 0.9rem Montserrat;
+}
+.inputEmail,
+.inputPassword {
+  position: relative;
+  border: 2px solid var(--lightgray);
+  padding: 10px;
+  border-radius: 3px;
+  margin: 10px 0;
+}
+.inputEmail input,
+.inputPassword input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding-left: 2rem;
+  background: white;
+  color: -internal-light-white(rgb(255, 255, 255), white) !important;
+  font: 400 0.8rem cursive;
+  height: 30px;
+}
+input:-internal-autofill-selected {
+  background-image: none !important;
+  background-color: white !important;
+}
+.inputEmail input:focus,
+.inputPassword input:focus {
+  outline: none;
+}
+.inputEmail span,
+.inputPassword span {
+  position: absolute;
+}
+.registerHere {
+  margin-top: 1.5rem;
+  font: 500 0.7rem Montserrat;
+  color: var(--deepBlack);
+}
+.registerHere a {
+  color: var(--black);
+  transition: all 0.5s;
+}
+.registerHere a:hover {
+  color: var(--pink);
+}
+.loginButton {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 13px;
+  color: white;
+  background-color: var(--pink);
+  border-radius: 3px;
+  text-align: center;
+  border: none;
+  font: 600 0.9rem Montserrat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.loginButton span {
+  width: 20px !important;
+  margin-left: 10px;
+  height: 20px !important;
+}

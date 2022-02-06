@@ -8,6 +8,7 @@ import { clearError, getProductDetails } from "../../actions/productAction";
 import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
 import Loader from "../Layout/Loader/Loader";
+import MetaData from "../Layout/MetaData";
 import "./ProductDetails.css";
 import ReviewCard from "./ReviewCard.js";
 
@@ -42,6 +43,7 @@ function ProductDetails() {
         <Loader />
       ) : (
         <div>
+          <MetaData title={`${product.name} -- TUDO STORE`} />
           <Header />
           <div className="productDetails">
             <div className="details-1">
