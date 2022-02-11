@@ -6,6 +6,7 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { clearError, login } from "../../actions/userAction";
+import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
 import "./Login.css";
 
@@ -83,6 +84,7 @@ function Login() {
           </form>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

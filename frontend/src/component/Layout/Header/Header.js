@@ -1,11 +1,13 @@
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import AccountMenu from "./AccountMenu";
 import "./Header.css";
 
 function Header() {
+  const { isAuthenticated } = useSelector((state) => state.user);
   return (
     <>
       <div className="navbar">
@@ -27,6 +29,7 @@ function Header() {
               <li>
                 <Link to="/contact">CONTACT US</Link>
               </li>
+              <li>{!isAuthenticated && <Link to="/login">LOGIN</Link>}</li>
             </ul>
             <ul>
               <li>
@@ -39,9 +42,7 @@ function Header() {
                   <span>2</span>
                 </Link>
               </li>
-              <li>
-                <Link to="/login">{<AccountCircleOutlinedIcon />}</Link>
-              </li>
+              <li>{<AccountMenu />}</li>
             </ul>
           </div>
         </div>

@@ -1,0 +1,130 @@
+.profileContainer {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  background-color: white;
+}
+.profileContainer > div {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.profileContainer > div:first-child > h2 {
+  color: rgba(0, 0, 0, 0.555);
+  font: 500 2.2vmax Roboto, Arial, sans-serif;
+  transform: translateX(-10vmax) translateY(-2vmax);
+}
+.profileContainer > div:first-child > img {
+  width: 20vmax;
+  border-radius: 20px;
+  transition: all 0.5s;
+  border: 2px dotted gray;
+}
+.profileContainer > div:first-child > img:hover {
+  transform: scale(1.05);
+}
+.profileContainer > div:first-child a {
+  border: none;
+  background: var(--pink);
+  color: white;
+  margin: 40px;
+  text-align: center;
+  transition: all 0.5s;
+  text-decoration: none;
+  padding: 10px 20px;
+  width: 30%;
+  cursor: pointer;
+  font-family: Montserrat, "Helvetica";
+}
+.profileContainer > div:first-child a:hover {
+  background: var(--deepPink);
+}
+
+.profileContainer > div:last-child {
+  justify-content: space-evenly;
+  padding: 3rem;
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+.profileContainer > div:last-child > div > h4 {
+  color: #000;
+  font: 500 20px Montserrat;
+}
+.profileContainer > div:last-child > div > p {
+  color: rgba(0, 0, 0, 0.555);
+  font: 400 1vmax cursive;
+  margin: 5px 0;
+}
+.profileContainer > div:last-child > div:last-child {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+.profileContainer > div:last-child > div:last-child > a {
+  border: none;
+  background: var(--pink);
+  color: white;
+  margin: 20px 0;
+  text-align: center;
+  transition: all 0.5s;
+  text-decoration: none;
+  padding: 10px 20px;
+  width: 100%;
+  cursor: pointer;
+  font: 500 18px Montserrat;
+  transition: all 0.5s;
+}
+.profileContainer > div:last-child > div:last-child > a:hover {
+  background-color: var(--deepPink);
+}
+
+@media screen and (max-width: 600px) {
+  .profileContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+  .profileContainer > div:first-child > h2 {
+    font: 600 20px Poppins;
+    transform: translateY(-2vmax);
+  }
+  .profileContainer > div:first-child > a {
+    font: 400 15px Montserrat;
+  }
+  .profileContainer > div:last-child > {
+    display: flex;
+    flex-direction: column;
+    text-align: center !important;
+    align-items: center;
+  }
+  .profileContainer > div:last-child > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 5px 0;
+  }
+  .profileContainer > div:last-child > div > h4 {
+    font: 500 18px Montserrat;
+    width: 100%;
+    text-align: center;
+  }
+  .profileContainer > div:last-child > div > p {
+    font: 400 15px Montserrat;
+    width: 100%;
+    margin: 5px 0;
+    text-align: center;
+  }
+  .profileContainer > div:last-child > div:last-child {
+    width: 100%;
+  }
+  .profileContainer > div:last-child > div:last-child > a {
+    margin: 10px 0;
+    font: 500 15px Montserrat;
+  }
+}

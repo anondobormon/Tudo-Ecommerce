@@ -6,9 +6,15 @@ import {
   LOGIN_FAIL,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
+  LOGOUT_FAIL,
+  LOGOUT_SUCCESS,
   REGISTER_FAIL,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
+  UPDATE_PROFILE_FAIL,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_RESET,
+  UPDATE_PROFILE_SUCCESS,
 } from "../constants/userConstants";
 
 export const userReducer = (state = { user: {} }, action) => {
@@ -38,6 +44,18 @@ export const userReducer = (state = { user: {} }, action) => {
         user: null,
         error: action.payload,
       };
+    case LOGOUT_SUCCESS:
+      return {
+        loading: false,
+        user: null,
+        isAuthenticated: false,
+      };
+    case LOGOUT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
 
     case LOAD_USER_FAIL:
       return {
@@ -45,6 +63,44 @@ export const userReducer = (state = { user: {} }, action) => {
         isAuthenticated: false,
         user: null,
         error: action.payload,
+      };
+
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+export const profileReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UPDATE_PROFILE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        isAuthenticated: false,
+      };
+    case UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isUpdated: action.payload,
+      };
+    case UPDATE_PROFILE_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case UPDATE_PROFILE_RESET:
+      return {
+        ...state,
+        loading: false,
+        isUpdated: false,
       };
 
     case CLEAR_ERROR:

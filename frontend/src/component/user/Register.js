@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { clearError, register } from "../../actions/userAction";
 import profileAvatar from "../../images/profile1.png";
+import Footer from "../Layout/Header/Footer";
+import Header from "../Layout/Header/Header";
 import "./Register.css";
 
 function Register() {
@@ -64,6 +66,7 @@ function Register() {
   }, [alert, user, isAuthenticated, dispatch, navigate]);
   return (
     <div>
+      <Header />
       <div className="register">
         <div className="registerContainer">
           <h2>Register Here</h2>
@@ -132,6 +135,7 @@ function Register() {
           </form>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

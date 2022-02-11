@@ -7,9 +7,14 @@ import {
   LOGIN_FAIL,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
+  LOGOUT_FAIL,
+  LOGOUT_SUCCESS,
   REGISTER_FAIL,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
+  UPDATE_PROFILE_FAIL,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS,
 } from "../constants/userConstants";
 
 //Login actions
@@ -57,6 +62,35 @@ export const loadUser = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: LOAD_USER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+//lOGOUT
+export const logout = () => async (dispatch) => {
+  try {
+    await axios.get("/api/v1/logout");
+    dispatch({ type: LOGOUT_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: LOGOUT_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+//Update Profile
+export const updateProfile = (userData) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_PROFILE_REQUEST });
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.post("/api/v1/me/updater", userData, config);
+    dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.user });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PROFILE_FAIL,
       payload: error.response.data.message,
     });
   }
