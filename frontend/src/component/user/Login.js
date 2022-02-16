@@ -4,7 +4,7 @@ import { CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { clearError, login } from "../../actions/userAction";
 import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
@@ -16,6 +16,7 @@ function Login() {
   const dispatch = useDispatch();
   const alert = useAlert();
   let navigate = useNavigate();
+  let location = useLocation();
 
   const { loading, user, error, isAuthenticated } = useSelector(
     (state) => state.user
@@ -27,15 +28,17 @@ function Login() {
     dispatch(login(loginEmail, loginPassword));
   };
 
+  let redirect = location.search ? location.search.split("=")[1] : "/account";
+
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearError());
     }
     if (isAuthenticated) {
-      navigate(`/account`);
+      navigate(redirect);
     }
-  }, [error, dispatch, isAuthenticated, alert, navigate]);
+  }, [error, dispatch, isAuthenticated, alert, navigate, redirect]);
 
   return (
     <div>

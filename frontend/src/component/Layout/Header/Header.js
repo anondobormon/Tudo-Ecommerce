@@ -8,6 +8,7 @@ import "./Header.css";
 
 function Header() {
   const { isAuthenticated } = useSelector((state) => state.user);
+  const { cartItems } = useSelector((state) => state.cart);
   return (
     <>
       <div className="navbar">
@@ -39,7 +40,7 @@ function Header() {
               <li className="cart">
                 <Link to="/cart">
                   {<ShoppingCartOutlinedIcon />}
-                  <span>2</span>
+                  <span>{cartItems.length}</span>
                 </Link>
               </li>
               <li>{<AccountMenu />}</li>

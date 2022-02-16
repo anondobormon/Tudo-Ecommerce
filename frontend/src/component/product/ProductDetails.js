@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import Carousel from "react-material-ui-carousel";
 import ReactStars from "react-rating-stars-component";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { addItemsToCart } from "../../actions/cartAction";
 import { clearError, getProductDetails } from "../../actions/productAction";
 import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
@@ -19,6 +20,23 @@ function ProductDetails() {
   const { loading, product, error } = useSelector(
     (state) => state.productDetails
   );
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = () => {
+    if (product.stock <= quantity) return;
+    let qty = quantity + 1;
+    setQuantity(qty);
+  };
+  const decreaseQuantity = () => {
+    if (1 >= quantity) return;
+    let qty = quantity - 1;
+    setQuantity(qty);
+  };
+
+  const addToCartHandler = () => {
+    dispatch(addItemsToCart(id, quantity));
+    alert.success("Item added in cart!");
+  };
 
   useEffect(() => {
     if (error) {
@@ -72,11 +90,17 @@ function ProductDetails() {
                 <h1>{product.price}</h1>
                 <div className="detailsBlock-3-1">
                   <div className="detailsBlock-3-1-1">
-                    <button>-</button>
-                    <input type="number" name="" id="" value="1" />
-                    <button>+</button>
+                    <button onClick={decreaseQuantity}>-</button>
+                    <input
+                      readOnly
+                      type="number"
+                      name=""
+                      id=""
+                      value={quantity}
+                    />
+                    <button onClick={increaseQuantity}>+</button>
                   </div>
-                  <button>Add to Cart</button>
+                  <button onClick={addToCartHandler}>Add to Cart</button>
                 </div>
                 <p>
                   Status:
