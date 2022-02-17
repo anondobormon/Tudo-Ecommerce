@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import { loadUser } from "./actions/userAction";
 import "./App.css";
 import Cart from "./component/cart/Cart";
+import ConfirmOrder from "./component/cart/ConfirmOrder";
+import Shipping from "./component/cart/Shipping";
 import Home from "./component/Home/Home";
 import ProductDetails from "./component/product/ProductDetails";
 import Products from "./component/product/Products";
@@ -29,6 +31,8 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/shipping" element={<Shipping />} />
+      <Route path="/order/confirm" element={<ConfirmOrder />} />
       <Route
         path="/account"
         element={

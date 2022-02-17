@@ -53,7 +53,7 @@ const Cart = () => {
             </div>
             {cartItems &&
               cartItems.map((item) => (
-                <div className="cartContainer">
+                <div key={item.product} className="cartContainer">
                   <CartItemCard item={item} deleteCartItem={deleteCartItem} />
                   <div className="cartInput">
                     <button
