@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
 import MetaData from "../Layout/MetaData";
@@ -11,7 +11,7 @@ import "./ConfirmOrder.css";
 const ConfirmOrder = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
-  console.log(cartItems);
+  const navigate = useNavigate();
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price,
@@ -24,6 +24,17 @@ const ConfirmOrder = () => {
   const totalPrice = subtotal + shippingCharge + tax;
 
   const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
+
+  const proceedToPayment = () => {
+    const data = {
+      subtotal,
+      shippingCharge,
+      tax,
+      totalPrice,
+    };
+    sessionStorage.setItem("orderInfo", JSON.stringify(data));
+    navigate("/process/payment");
+  };
 
   return (
     <div>
@@ -94,7 +105,7 @@ const ConfirmOrder = () => {
               </p>
               <span>{totalPrice} Tk</span>
             </div>
-            <button>Proceed to Payment</button>
+            <button onClick={proceedToPayment}>Proceed to Payment</button>
           </div>
         </div>
       </div>

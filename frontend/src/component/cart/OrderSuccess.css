@@ -1,0 +1,25 @@
+.orderSuccess {
+  margin: auto;
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.orderSuccess svg {
+  font-size: 7rem;
+  color: var(--pink);
+}
+.orderSuccess a {
+  border: none;
+  color: white;
+  background-color: var(--pink);
+  font: 300 15px Poppins;
+  padding: 15px 30px;
+  transition: all 0.5s;
+  outline: none;
+  margin: 22px;
+  cursor: pointer;
+  text-align: center;
+}
