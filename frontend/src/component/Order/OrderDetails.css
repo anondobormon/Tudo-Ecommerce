@@ -1,0 +1,52 @@
+.orderDetailsPage {
+  background-color: white;
+}
+.orderDetailsContainer > h1 {
+  font: 400 1.5rem Poppins;
+  margin: 2rem 0;
+  color: var(--gray);
+}
+.orderDetailsContainer {
+  padding: 0 5rem;
+  border: 1px solid red;
+  padding-bottom: 0;
+}
+.orderDetailsContainer > p {
+  font: 400 1.8rem Poppins;
+}
+.orderDetailsContainerBox > div,
+.orderDetailsCartItemsContainer > div {
+  display: flex;
+  margin: 1rem 0;
+}
+.orderDetailsContainerBox > div span,
+.orderDetailsCartItemsContainer > div span {
+  font: 400 1rem Poppins;
+  color: var(--deepBlack);
+  margin-left: 1rem;
+  font-weight: 300;
+}
+
+.orderDetailsCartItems {
+  padding: 4rem;
+  border-top: 2px solid gray;
+}
+.orderDetailsCartItems > P {
+  font: 400 1.2rem Poppins;
+}
+.orderDetailsCartItemsContainer div {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.orderDetailsCartItemsContainer div > img {
+  width: 200px;
+}
+.orderDetailsCartItemsContainer div a {
+  transition: all 0.5s;
+  font: 500 1rem Poppins;
+  text-transform: capitalize;
+}
+.orderDetailsCartItemsContainer div a:hover {
+  color: var(--pink);
+}

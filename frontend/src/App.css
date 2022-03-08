@@ -35,3 +35,39 @@ input[type="number"] {
   --deepPink:#c71830;
   --montserrat: font-family: 'Montserrat', sans-serif;
 }
+
+.main_Container{
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+@media (min-width:1450px){
+  .main_Container {
+    max-width: 1400px;
+  }
+}
+@media (min-width:1200px){
+  .main_Container {
+    max-width: 1170px;
+  }
+}
+@media (min-width:992px){
+  .main_Container {
+    max-width: 960px;
+  }
+}
+@media (min-width:768px){
+  .main_Container {
+    max-width: 738px;
+  }
+}
+@media (min-width:320px){
+  .main_Container {
+    max-width: 100%;
+  }
+}
+  

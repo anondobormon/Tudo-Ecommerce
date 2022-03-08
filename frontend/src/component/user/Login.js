@@ -24,7 +24,6 @@ function Login() {
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    console.log(loginEmail, loginPassword);
     dispatch(login(loginEmail, loginPassword));
   };
 

@@ -14,12 +14,12 @@ const options = {
 };
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
+  <Provider store={store}>
+    <BrowserRouter>
       <AlertProvider template={AlertTemplate} {...options}>
         <App />
       </AlertProvider>
-    </Provider>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );

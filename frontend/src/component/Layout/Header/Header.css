@@ -5,10 +5,9 @@
   align-items: center;
   justify-content: center;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  width: 100%;
 }
 .navContainer {
-  max-width: 1300px;
-  width: 80%;
   display: flex;
   justify-content: space-between;
   align-items: center;

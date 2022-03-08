@@ -94,7 +94,6 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
   const isReviewed = product.reviews.find(
     (rev) => rev.user.toString() === req.user._id.toString()
   );
-  console.log("working");
   if (isReviewed) {
     product.review.forEach((rev) => {
       if (rev.user.toString() === req.user._id.toString())

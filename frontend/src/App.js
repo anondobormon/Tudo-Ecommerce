@@ -11,6 +11,8 @@ import OrderSuccess from "./component/cart/OrderSuccess";
 import Payment from "./component/cart/Payment";
 import Shipping from "./component/cart/Shipping";
 import Home from "./component/Home/Home";
+import MyOrders from "./component/Order/MyOrders";
+import OrderDetails from "./component/Order/OrderDetails.js";
 import ProductDetails from "./component/product/ProductDetails";
 import Products from "./component/product/Products";
 import Search from "./component/product/Search";
@@ -43,9 +45,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/shipping" element={<Shipping />} />
       <Route path="/order/confirm" element={<ConfirmOrder />} />
-      <Route path="/order/success" element={<OrderSuccess />} />
 
       <Route
         path="/account"
@@ -78,6 +78,38 @@ function App() {
         element={
           <ProtectedRoute>
             <UpdatePassword />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/orders"
+        element={
+          <ProtectedRoute>
+            <MyOrders />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/order/:id"
+        element={
+          <ProtectedRoute>
+            <OrderDetails />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/order/success"
+        element={
+          <ProtectedRoute>
+            <OrderSuccess />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/shipping"
+        element={
+          <ProtectedRoute>
+            <Shipping />
           </ProtectedRoute>
         }
       />

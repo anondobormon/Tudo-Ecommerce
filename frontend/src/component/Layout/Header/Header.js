@@ -12,7 +12,7 @@ function Header() {
   return (
     <>
       <div className="navbar">
-        <div className="navContainer">
+        <div className="navContainer main_Container">
           <div className="navLogo">
             <h2>TUDO</h2>
           </div>
