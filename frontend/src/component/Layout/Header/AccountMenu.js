@@ -110,7 +110,7 @@ export default function AccountMenu() {
               </Link>
 
               {user.role === "admin" && (
-                <Link to="/dashboard">
+                <Link to="/admin/dashboard">
                   <MenuItem>
                     <Avatar>{<DashboardIcon />}</Avatar> Dashboard
                   </MenuItem>

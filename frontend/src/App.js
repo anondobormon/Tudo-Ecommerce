@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { loadUser } from "./actions/userAction";
 import "./App.css";
+import Dashboard from "./component/Admin/Dashboard.js";
 import Cart from "./component/cart/Cart";
 import ConfirmOrder from "./component/cart/ConfirmOrder";
 import OrderSuccess from "./component/cart/OrderSuccess";
@@ -26,6 +27,7 @@ import store from "./store";
 
 function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
+
   async function getStripeApiKey() {
     const { data } = await axios.get("/api/v1/stripeApiKey");
     setStripeApiKey(data.stripeApiKey);
@@ -35,6 +37,7 @@ function App() {
     store.dispatch(loadUser());
     getStripeApiKey();
   }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -110,6 +113,15 @@ function App() {
         element={
           <ProtectedRoute>
             <Shipping />
+          </ProtectedRoute>
+        }
+      />
+      {/* Dashboard route */}
+      <Route
+        path="/admin/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
           </ProtectedRoute>
         }
       />
