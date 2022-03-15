@@ -52,6 +52,10 @@ const productSchema = new mongoose.Schema({
         ref: "User",
         required: true,
       },
+      image: {
+        type: String,
+        default: "https://i.ibb.co/F5Q6MXx/avatar.png",
+      },
       name: {
         type: String,
         required: true,

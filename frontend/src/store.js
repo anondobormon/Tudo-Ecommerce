@@ -3,19 +3,23 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { cartReducer } from "./reducers/cartReducer";
 import {
+  allOrdersReducer,
   myOrdersReducer,
   newOrderReducer,
   orderDetailsReducer,
+  orderReducer,
 } from "./reducers/orderReducer";
 import {
+  newProductReducer,
   newReviewReducer,
   productDetailsReducer,
   productReducer,
+  productsReducer,
 } from "./reducers/productReducer";
 import { profileReducer, userReducer } from "./reducers/userReducer";
 
 const reducer = combineReducers({
-  products: productReducer,
+  products: productsReducer,
   productDetails: productDetailsReducer,
   user: userReducer,
   profile: profileReducer,
@@ -24,6 +28,10 @@ const reducer = combineReducers({
   myOrders: myOrdersReducer,
   orderDetails: orderDetailsReducer,
   newReview: newReviewReducer,
+  newProduct: newProductReducer,
+  product: productReducer,
+  allOrders: allOrdersReducer,
+  order: orderReducer,
 });
 
 let initialState = {

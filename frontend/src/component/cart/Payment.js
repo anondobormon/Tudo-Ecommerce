@@ -1,7 +1,7 @@
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import EventIcon from "@mui/icons-material/Event";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
-import { Typography } from "@mui/material";
+import { Container } from "@mui/material";
 import {
   CardCvcElement,
   CardExpiryElement,
@@ -15,9 +15,13 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearError, createOrder } from "../../actions/orderAction";
+import Footer from "../Layout/Header/Footer";
+import Header from "../Layout/Header/Header";
 import MetaData from "../Layout/MetaData";
+import SubHeader from "../Layout/SubHeader/SubHeader";
+import RelatedProduct from "../product/RelatedProduct";
 import CheckOutSteps from "./CheckOutSteps";
-import "./Payment.css";
+import "./Payment.scss";
 
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -110,36 +114,40 @@ const Payment = () => {
   return (
     <>
       <MetaData title="Payment" />
-      <CheckOutSteps activeStep={2} />
-      <div className="paymentContainer">
-        <form
-          action=""
-          onSubmit={(e) => submitHandler(e)}
-          className="paymentForm"
-        >
-          <Typography variant="h6" gutterBottom component="div">
-            Card Info
-          </Typography>
-          <div>
-            <CreditCardIcon />
-            <CardNumberElement className="paymentInput" />
-          </div>
-          <div>
-            <EventIcon />
-            <CardExpiryElement className="paymentInput" />
-          </div>
-          <div>
-            <VpnKeyIcon />
-            <CardCvcElement className="paymentInput" />
-          </div>
-          <input
-            ref={payBtn}
-            className="paymentFormBtn"
-            type="submit"
-            value={`Pay - ${orderInfo && orderInfo.totalPrice}`}
-          />
-        </form>
-      </div>
+      <Header />
+      <SubHeader />
+      <Container>
+        <CheckOutSteps activeStep={2} />
+        <div className="paymentContainer">
+          <form
+            action=""
+            onSubmit={(e) => submitHandler(e)}
+            className="paymentForm"
+          >
+            <h3>Card Info</h3>
+            <div className="input">
+              <CreditCardIcon />
+              <CardNumberElement className="paymentInput" />
+            </div>
+            <div className="input">
+              <EventIcon />
+              <CardExpiryElement className="paymentInput" />
+            </div>
+            <div className="input">
+              <VpnKeyIcon />
+              <CardCvcElement className="paymentInput" />
+            </div>
+            <input
+              ref={payBtn}
+              className="paymentFormBtn"
+              type="submit"
+              value={`Pay - ${orderInfo && orderInfo.totalPrice}`}
+            />
+          </form>
+        </div>
+        <RelatedProduct />
+      </Container>
+      <Footer />
     </>
   );
 };

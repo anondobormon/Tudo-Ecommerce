@@ -1,0 +1,96 @@
+.register {
+  max-width: 450px;
+  margin: 1rem auto;
+  .registerContainer {
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+    p {
+      font-weight: 300;
+      margin: 0.3rem 0;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    form {
+      #registerImage {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0.5rem auto;
+        overflow: hidden;
+        .avatar {
+          object-fit: cover;
+        }
+        img {
+          cursor: pointer;
+          width: 100%;
+        }
+        input {
+          display: none;
+        }
+      }
+      .items {
+        margin: 0.7rem 0;
+        label {
+          margin: 0.7rem 0 0.2rem 0;
+          font-weight: 500;
+          color: rgb(68, 68, 68);
+          font-family: montserrat;
+          font-size: 0.8rem;
+        }
+        .item {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          border: 1px solid lightgray;
+          padding: 0.5rem 0.6rem;
+          position: relative;
+          .icon {
+            color: gray;
+            position: absolute;
+            left: 0.5rem;
+            top: 0.4rem;
+            font-size: 1.4rem;
+          }
+          input {
+            border: none;
+            outline: none;
+            margin: 0 0 0.2rem 1rem;
+            font-weight: 300;
+            font-size: 0.9rem;
+            width: 100%;
+          }
+        }
+      }
+      .registerHere {
+        text-align: left;
+      }
+      .registerButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1.2rem 0 0.5rem 0;
+        padding: 0.7rem 1.5rem;
+        border: none;
+        background-color: #29a56c;
+        color: #fff;
+        transition: all 0.5s;
+        text-transform: uppercase;
+        cursor: pointer;
+        width: 100%;
+        &:active {
+          background-color: #0d7a48;
+        }
+        span {
+          width: 20px !important;
+          margin-left: 10px;
+          height: 20px !important;
+        }
+      }
+    }
+  }
+}

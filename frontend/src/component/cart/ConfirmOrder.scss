@@ -1,0 +1,147 @@
+.confirmOrder {
+  .orderHeading {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 1.5rem 0;
+    line-height: 1.8;
+    text-transform: capitalize;
+    font-family: Montserrat;
+  }
+  .confirmOrderPage {
+    display: flex;
+    gap: 20px;
+    .left {
+      flex: 2;
+      .orderDetails {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .orderBox {
+          border: 1px solid lightgray;
+          padding: 1rem;
+          margin: 0.5rem 0;
+          h3 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 0 0.8rem 0;
+          }
+          .orderBoxLeft {
+            display: flex;
+            align-items: center;
+            // justify-content: flex-start;
+            gap: 20px;
+            .avatar {
+              flex: 1;
+              div {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                overflow: hidden;
+                object-fit: cover;
+                margin: 1rem auto;
+              }
+            }
+            .items {
+              flex: 3;
+              .item {
+                display: flex;
+                align-items: center;
+                margin: 0.5rem 0;
+                p {
+                  margin: 0;
+                  font-size: 0.9rem;
+                  font-weight: 700;
+                }
+                span {
+                  font-size: 0.9rem;
+                  font-weight: 200;
+                  margin-left: 0.5rem;
+                }
+              }
+            }
+          }
+        }
+      }
+      .confirmCartItems {
+        flex: 1;
+        border: 1px solid lightgray;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        h3 {
+          font-weight: 700;
+          font-size: 1.2rem;
+          margin: 0 0 0.8rem 0;
+        }
+        .confirmCartItemsContainer {
+          .cartInfo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0.8rem 0;
+            .cartImg {
+              width: 100px;
+              height: 100px;
+              object-fit: cover;
+              overflow: hidden;
+              img {
+                width: 100%;
+              }
+            }
+            a {
+              margin: 0;
+              padding: 0.3rem 0.8rem;
+              text-transform: capitalize;
+              max-width: 150px;
+              color: #29a56c;
+              background-color: #29a56b3d;
+              border: 1px solid #29a56c;
+              font-size: 0.8rem;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+    .right {
+      flex: 1;
+      max-height: 350px;
+      border: 1px solid lightgray;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      h4 {
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin: 0 0 0.8rem 0;
+      }
+      div {
+        .orderSummeryFirst {
+          div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+        }
+      }
+      .orderSummeryTotal {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      button {
+        width: 100%;
+        margin: 1.2rem 0 0.5rem 0;
+        padding: 0.7rem 1.5rem;
+        border: none;
+        background-color: #29a56c;
+        color: #fff;
+        transition: all 0.5s;
+        text-transform: uppercase;
+        cursor: pointer;
+        &:hover {
+          background-color: #0d7a48;
+        }
+      }
+    }
+  }
+}

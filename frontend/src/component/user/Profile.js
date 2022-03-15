@@ -1,60 +1,76 @@
+import { Container } from "@mui/material";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../../actions/userAction";
 import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
-import "./Profile.css";
+import SubHeader from "../Layout/SubHeader/SubHeader";
+import "./Profile.scss";
 
 const Profile = () => {
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isAuthenticated) {
       navigate(`/login`);
     }
   }, [navigate, isAuthenticated]);
+  const handleLogout = () => {
+    dispatch(logout());
+    alert.success("Logout successfully");
+  };
 
   return (
-    <div>
+    <>
       {loading ? (
         <Loader />
       ) : (
         <>
           <MetaData title={`${user.name}'s Profile `} />
           <Header />
-          <div className="profileContainer">
-            <div>
-              <h2>My Profile</h2>
-
-              <img src={user.avatar?.url} alt={user?.name} />
-              <Link to="/me/update">Edit Profile</Link>
+          <SubHeader />
+          <Container>
+            <h2>My Profile</h2>
+            <div className="profileContainer">
+              <div className="left">
+                <div className="avatar">
+                  <img src={user.avatar?.url} alt={user?.name} />
+                </div>
+                <div className="links">
+                  <Link to="/account">Profile</Link>
+                  <Link to="/me/update">Update Profile</Link>
+                  <Link to="/order">My Order</Link>
+                  <Link to="/password/update">Change Password</Link>
+                  <button onClick={handleLogout}>Logout</button>
+                </div>
+              </div>
+              <div className="right">
+                <div className="items">
+                  <div className="item">
+                    <p>Full Name:</p>
+                    <span>{user.name}</span>
+                  </div>
+                  <div className="item">
+                    <p>Email: </p>
+                    <span>{user.email}</span>
+                  </div>
+                  <div className="item">
+                    <p>Joined On:</p>
+                    <span>{String(user.createdAt).substr(0, 10)}</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>
-              <div>
-                <h4>Full Name</h4>
-                <p>{user.name}</p>
-              </div>
-              <div>
-                <h4>Email: </h4>
-                <p>{user.email}</p>
-              </div>
-              <div>
-                <h4>Joined On</h4>
-                <p>{String(user.createdAt).substr(0, 10)}</p>
-              </div>
-              <div>
-                <Link to="/order">My Order</Link>
-                <Link to="/password/update">Change Password</Link>
-              </div>
-            </div>
-          </div>
+          </Container>
           <Footer />
         </>
       )}
-    </div>
+    </>
   );
 };
 

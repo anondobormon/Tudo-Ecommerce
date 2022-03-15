@@ -1,0 +1,50 @@
+.offer {
+  min-height: 600px;
+  background-image: url("https://i.ibb.co/XFtb3wX/offer.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  .offerInfo {
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    h2 {
+      color: #fff;
+      text-transform: uppercase;
+      margin: 2rem 0 0 0;
+      font-size: 3rem;
+    }
+    h3 {
+      color: #fff;
+      text-transform: uppercase;
+      margin: 0rem 0 1rem 0;
+      font-size: 2rem;
+      font-weight: 300;
+    }
+    .title {
+      text-transform: capitalize;
+      font: 700 1.3rem montserrat;
+      margin: 1rem 0;
+    }
+    .price {
+      font-weight: 700;
+      font-size: 1.9rem;
+      font-family: montserrat;
+    }
+    .offerBtn {
+      padding: 0.7rem 2rem;
+      border: none;
+      background-color: #29a56c;
+      color: #fff;
+      transition: all 0.5s;
+      text-transform: uppercase;
+      cursor: pointer;
+      &:hover {
+        background-color: #0d7a48;
+      }
+    }
+  }
+}

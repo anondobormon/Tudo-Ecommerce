@@ -1,0 +1,111 @@
+.productHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .productsHeading {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 1.5rem 0;
+    line-height: 1.8;
+    text-transform: capitalize;
+    font-family: Montserrat;
+  }
+}
+
+.products {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  .product {
+    flex: 3;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .filterBox {
+    flex: 1;
+    position: sticky;
+    .MuiBox-root {
+      width: 100% !important;
+    }
+    .cateBox {
+      background-color: #f8f8f8;
+      padding: 1rem 1.5rem;
+      margin: 1rem 0;
+      border: 1px solid lightgray;
+      .cateTitle {
+        font-family: montserrat;
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: 1.1px;
+      }
+    }
+    .box {
+      border: 1px solid lightgray;
+      padding: 1.5rem;
+      margin: 0rem 0 1rem 0;
+    }
+    .title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin: 0 0 0.7rem 0;
+    }
+    .categoryBox {
+      .category_link {
+        list-style: none;
+        margin: 0.2rem 0;
+        padding: 0.2rem 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 400;
+        transition: all 0.5s;
+        cursor: pointer;
+        &:hover {
+          background-color: #29a56b31;
+          color: #29a56c;
+        }
+      }
+    }
+  }
+}
+.paginationBox {
+  margin: 1rem 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .qty {
+    font-weight: 300;
+    font-size: 1rem;
+    margin: 0;
+  }
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .page-item {
+      list-style: none;
+      border: 1px solid lightgray;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s;
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(7, 7, 7, 0.678);
+        font-weight: 700;
+      }
+      &:hover {
+        background-color: #29a56b31;
+        color: #29a56c !important;
+        border: #29a56b31;
+        a {
+          color: #29a56c !important;
+        }
+      }
+    }
+  }
+}

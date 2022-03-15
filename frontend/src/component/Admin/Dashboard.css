@@ -1,11 +1,55 @@
 .dashboard {
-  max-width: 10rem;
+  width: 100%;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 5fr;
   position: absolute;
+  font-family: Poppins;
 }
 .dashboardContainer {
   border-left: 1px solid rgba(0, 0, 0, 0.13);
   background-color: white;
   padding: 3rem 0;
+  width: 100%;
+}
+
+.dashboardContainer > h2 {
+  text-align: center;
+  color: gray;
+  font: 300 2rem Poppins;
+  width: 50%;
+  padding: 1.5rem;
+  margin: auto;
+}
+.dashboardSummery > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboardSummery > div > p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 500 0.9rem Poppins;
+  background-color: var(--pink);
+  color: white;
+  width: 100%;
+  padding: 0.4rem 0;
+}
+.dashboardSummery > div:last-child {
+  display: flex;
+  align-items: center;
+}
+.dashboardSummery > div:last-child > a {
+  background-color: aquamarine;
+  color: var(--pink);
+  border-radius: 5px;
+  margin: 3rem;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font: 500 1.5rem Poppins;
+  text-align: center;
+  align-items: center;
 }

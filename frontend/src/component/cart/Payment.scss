@@ -1,0 +1,42 @@
+.paymentContainer {
+  form {
+    margin: 1rem auto;
+    max-width: 500px;
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      font-family: montserrat;
+      margin: 1rem 0;
+      text-align: center;
+    }
+    .input {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0.5rem;
+      border: 1px solid lightgray;
+      background-color: transparent;
+      margin: 0.5rem 0;
+      .paymentInput {
+        padding-right: 10px;
+        width: 90%;
+        font-weight: 300;
+        outline: none;
+      }
+    }
+    .paymentFormBtn {
+      width: 100%;
+      margin: 1.2rem 0 0.5rem 0;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      background-color: #29a56c;
+      color: #fff;
+      transition: all 0.5s;
+      text-transform: uppercase;
+      cursor: pointer;
+      &:hover {
+        background-color: #0d7a48;
+      }
+    }
+  }
+}

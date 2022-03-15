@@ -18,7 +18,7 @@
   text-decoration: none;
   color: rgba(0, 0, 0, 0.493);
   font: 300 1rem Poppins;
-  padding: 1.3rem;
+  padding: 1rem;
   transition: all 0.5s;
 }
 .sidebar a:hover {

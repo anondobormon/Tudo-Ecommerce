@@ -1,16 +1,23 @@
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import MailOutlineOutlinedIcon from "@mui/icons-material/MailOutlineOutlined";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Container } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { clearError, loadUser, updateProfile } from "../../actions/userAction";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  clearError,
+  loadUser,
+  logout,
+  updateProfile,
+} from "../../actions/userAction";
 import { UPDATE_PROFILE_RESET } from "../../constants/userConstants";
 import profileAvatar from "../../images/profile1.png";
 import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
-import "./UpdateProfile.css";
+import MetaData from "../Layout/MetaData";
+import SubHeader from "../Layout/SubHeader/SubHeader";
+import "./UpdateProfile.scss";
 
 const UpdateProfile = () => {
   const [avatarPreview, setAvatarPreview] = useState(profileAvatar);
@@ -43,7 +50,7 @@ const UpdateProfile = () => {
     }
   };
 
-  const registerSubmit = (e) => {
+  const updateSubmit = (e) => {
     e.preventDefault();
     const myForm = new FormData();
     myForm.set("name", name);
@@ -62,7 +69,7 @@ const UpdateProfile = () => {
         name: user.name,
         email: user.email,
       });
-      setAvatarPreview(user.avatar.url);
+      setAvatarPreview(user?.avatar.url);
     }
     if (isUpdated) {
       alert.success("Profile Updated Successfully");
@@ -73,62 +80,93 @@ const UpdateProfile = () => {
       });
     }
   }, [alert, isUpdated, error, user, dispatch, navigate]);
-
+  const handleLogout = () => {
+    dispatch(logout());
+    alert.success("Logout successfully");
+  };
   return (
     <div>
       <Header />
-      <div className="register">
-        <div className="registerContainer">
-          <h2>Update Your Profile</h2>
-          <form
-            className="signUpForm"
-            encType="multipart/form-data"
-            onSubmit={registerSubmit}
-          >
-            <label htmlFor="name">Name</label>
-            <div className="signUpName">
-              <AccountCircleOutlinedIcon />
-              <input
-                type="text"
-                placeholder="Name"
-                required
-                name="name"
-                id="name"
-                value={name}
-                onChange={updateProfileHandler}
-              />
-            </div>
-            <label htmlFor="email">Email</label>
-            <div className="signUpEmail">
-              <MailOutlineOutlinedIcon />
-              <input
-                type="email"
-                placeholder="Email"
-                required
-                name="email"
-                id="email"
-                value={email}
-                onChange={updateProfileHandler}
-              />
-            </div>
+      <MetaData title="UPDATE PROFILE - TUDO" />
+      <SubHeader />
+      <Container>
+        <div className="update">
+          <div className="updateContainer">
+            <h2>Update Your Profile</h2>
+            <div className="updateContainer-1">
+              <div className="left">
+                <div className="avatar">
+                  <img src={user.avatar?.url} alt={user?.name} />
+                </div>
+                <div className="links">
+                  <Link to="/account">Profile</Link>
+                  <Link to="/me/update">Update Profile</Link>
+                  <Link to="/order">My Order</Link>
+                  <Link to="/password/update">Change Password</Link>
+                  <button onClick={handleLogout}>Logout</button>
+                </div>
+              </div>
 
-            <div id="registerImage">
-              <img src={avatarPreview} alt="Avatar Preview" />
-              <input
-                type="file"
-                name="avatar"
-                accept="image/*"
-                onChange={updateProfileHandler}
-              />
-            </div>
+              <div className="right">
+                <form
+                  className="signUpForm"
+                  encType="multipart/form-data"
+                  onSubmit={updateSubmit}
+                >
+                  <div id="updateImage">
+                    <label htmlFor="avatar">
+                      <img src={avatarPreview} alt="Avatar Preview" />
+                    </label>
+                    <input
+                      id="avatar"
+                      type="file"
+                      name="avatar"
+                      accept="image/*"
+                      onChange={updateProfileHandler}
+                    />
+                  </div>
+                  <div className="items">
+                    <label htmlFor="name">Name</label>
+                    <div className="item">
+                      <AccountCircleOutlinedIcon />
+                      <input
+                        type="text"
+                        placeholder="Name"
+                        required
+                        name="name"
+                        id="name"
+                        value={name}
+                        onChange={updateProfileHandler}
+                      />
+                    </div>
+                  </div>
 
-            <button type="submit" className="registerButton">
-              Update
-              {loading && <CircularProgress color="inherit" />}
-            </button>
-          </form>
+                  <div className="items">
+                    <label htmlFor="email">Email</label>
+                    <div className="item">
+                      <MailOutlineOutlinedIcon />
+                      <input
+                        type="email"
+                        placeholder="Email"
+                        required
+                        name="email"
+                        id="email"
+                        value={email}
+                        onChange={updateProfileHandler}
+                      />
+                    </div>
+                  </div>
+
+                  <button type="submit" className="updateButton">
+                    Update
+                    {loading && <CircularProgress color="inherit" />}
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </Container>
       <Footer />
     </div>
   );

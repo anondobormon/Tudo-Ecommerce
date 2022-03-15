@@ -1,11 +1,6 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Rating,
-} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { Container, Dialog, DialogContent, Rating } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import Carousel from "react-material-ui-carousel";
@@ -23,7 +18,10 @@ import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
-import "./ProductDetails.css";
+import SubHeader from "../Layout/SubHeader/SubHeader";
+// import "./ProductDetails.css";
+import "./ProductDetails.scss";
+import RelatedProduct from "./RelatedProduct";
 import ReviewCard from "./ReviewCard.js";
 
 function ProductDetails() {
@@ -33,6 +31,8 @@ function ProductDetails() {
   const { loading, product, error } = useSelector(
     (state) => state.productDetails
   );
+  const { user } = useSelector((state) => state.user);
+
   const { success, error: reviewError } = useSelector(
     (state) => state.newReview
   );
@@ -90,6 +90,7 @@ function ProductDetails() {
     myForm.set("rating", rating);
     myForm.set("comment", comment);
     myForm.set("productId", id);
+    myForm.set("avatar", user?.avatar.url);
 
     dispatch(newReview(myForm));
     setOpen(false);
@@ -103,106 +104,151 @@ function ProductDetails() {
         <div>
           <MetaData title={`${product.name} -- TUDO STORE`} />
           <Header />
-          <div className="productDetails">
-            <div className="details-1">
-              <Carousel>
-                {product.images &&
-                  product.images.map((item, i) => (
-                    <img
-                      className="CarouselImage"
-                      key={item.url}
-                      src={item.url}
-                      alt={`${i}Slide`}
-                    />
-                  ))}
-              </Carousel>
-            </div>
-            <div className="details-2">
-              <div className="detailsBlock-1">
-                <h2>{product.name}</h2>
-                <p>Product # {product._id}</p>
+          <SubHeader />
+          <Container>
+            <div className="productDetails">
+              <div className="details-1">
+                <Carousel className="carousel">
+                  {product.images &&
+                    product.images.map((item, i) => (
+                      <img
+                        className="CarouselImage"
+                        key={item.url}
+                        src={item.url}
+                        alt={`${i}Slide`}
+                      />
+                    ))}
+                </Carousel>
               </div>
-              <div className="detailsBlock-2">
-                <ReactStars {...options} />
-                <span>({product.numOfReviews} Reviews)</span>
-              </div>
-              <div className="detailsBlock-3">
-                <h1>{product.price}</h1>
-                <div className="detailsBlock-3-1">
-                  <div className="detailsBlock-3-1-1">
-                    <button onClick={decreaseQuantity}>-</button>
-                    <input
-                      readOnly
-                      type="number"
-                      name=""
-                      id=""
-                      value={quantity}
-                    />
-                    <button onClick={increaseQuantity}>+</button>
-                  </div>
-                  <button
-                    disabled={product.stock < 1 ? true : false}
-                    onClick={addToCartHandler}
-                  >
-                    Add to Cart
-                  </button>
+              <div className="details-2">
+                <div className="detailsBlock-1">
+                  <p>Product # {product._id}</p>
+                  <h2>{product.name}</h2>
                 </div>
-                <p>
-                  Status:
-                  <b className={product.stock < 1 ? "redColor" : "greenColor"}>
-                    {product.stock < 1 ? "Out of Stock" : "In Stock"}
-                  </b>
-                </p>
+                <div className="detailsBlock-2">
+                  <ReactStars {...options} />
+                  <span>({product.numOfReviews} Reviews)</span>
+                </div>
+                <div className="detailsBlock-3">
+                  <p className="description">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Ab, eius esse quod quaerat, quidem delectus ducimus debitis
+                    dolorum quo inventore doloremque vitae optio, accusantium
+                    aliquid. Laboriosam ex nam quas iure.
+                  </p>
+                  <div className="price">
+                    <h3>$ {product.price + (product.price * 100) / 10}</h3>
+                    <h2>$ {product.price}</h2>
+                  </div>
+                  <div className="detailsBlock-3-1">
+                    <div className="detailsBlock-3-1-1">
+                      <button onClick={decreaseQuantity}>
+                        <RemoveIcon className="icon" />
+                      </button>
+                      <input
+                        readOnly
+                        type="number"
+                        name=""
+                        id=""
+                        value={quantity}
+                      />
+                      <button onClick={increaseQuantity}>
+                        <AddIcon className="icon" />
+                      </button>
+                    </div>
+                    <p className="stock">
+                      Status:
+                      <b
+                        className={
+                          product.stock < 1 ? "redColor" : "greenColor"
+                        }
+                      >
+                        {product.stock < 1 ? "Out of Stock" : "In Stock"}
+                      </b>
+                    </p>
+                    <button
+                      className="cartBtn"
+                      disabled={product.stock < 1 ? true : false}
+                      onClick={addToCartHandler}
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="detailsBlock-4">
-                Description: <p>{product.description}</p>
-              </div>
+            </div>
+
+            {/* //Product Description */}
+            <div className="productDescription">
+              <h3 className="desHeading">Description:</h3>
+              <p className="fullDesc">
+                {product.description
+                  ? product.description
+                  : "Description not Available"}
+              </p>
+            </div>
+            <hr />
+
+            {/* //reviews */}
+            <div className="reviews">
+              <h3 className="reviewHeading">Reviews</h3>
+              {product.reviews && product.reviews[0] ? (
+                <div className="review">
+                  {product.reviews &&
+                    product.reviews.map((review) => (
+                      <ReviewCard review={review} />
+                    ))}
+                </div>
+              ) : (
+                <p className="noReviews">No Reviews Yet !</p>
+              )}
               <button onClick={submitReviewToggle} className="submitReview">
                 Submit Review
               </button>
             </div>
-          </div>
-          <h3 className="reviewHeading">REVIEWS</h3>
 
-          <Dialog
-            open={open}
-            onClose={submitReviewToggle}
-            aria-describedby="alert-dialog-slide-description"
-          >
-            <DialogTitle>Submit Review</DialogTitle>
-            <DialogContent className="submitDialog">
-              <Rating
-                onChange={(e) => setRating(e.target.value)}
-                value={rating}
-                size="large"
-              />
+            {/* Modal */}
+            <Dialog
+              className="dialog"
+              open={open}
+              onClose={submitReviewToggle}
+              aria-describedby="alert-dialog-slide-description"
+            >
+              <h2 className="dialogTitle">Submit Review</h2>
+              <DialogContent className="submitDialog">
+                <Rating
+                  onChange={(e) => setRating(e.target.value)}
+                  value={rating}
+                  size="large"
+                />
 
-              <textarea
-                name=""
-                id=""
-                cols="30"
-                rows="10"
-                className="submitDialogTextArea"
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-              ></textarea>
-            </DialogContent>
-            <DialogActions>
-              <Button color="secondary" onClick={submitReviewToggle}>
-                Cancel
-              </Button>
-              <Button onClick={reviewSubmitHandler}>Submit</Button>
-            </DialogActions>
-          </Dialog>
+                <textarea
+                  cols="20"
+                  rows="10"
+                  placeholder="Write your comment about this product."
+                  className="submitDialogTextArea"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                ></textarea>
+              </DialogContent>
+              <div className="action">
+                <button
+                  className="cancel"
+                  color="secondary"
+                  onClick={submitReviewToggle}
+                >
+                  Cancel
+                </button>
+                <button className="submit" onClick={reviewSubmitHandler}>
+                  Submit
+                </button>
+              </div>
+            </Dialog>
+            {/* Modal */}
 
-          {product.reviews && product.reviews[0] ? (
-            <div className="reviews">
-              {product.reviews &&
-                product.reviews.map((review) => <ReviewCard review={review} />)}
-            </div>
-          ) : (
-            <p className="noReviews">No Reviews Yet !</p>
-          )}
+            {/* Related Product */}
+            <RelatedProduct />
+          </Container>
           <Footer />
         </div>
       )}

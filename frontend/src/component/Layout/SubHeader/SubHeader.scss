@@ -1,0 +1,35 @@
+.subHeader {
+  background-color: #f5f5f5;
+  padding: 1rem 0;
+  margin: 1.7rem 0;
+  .subContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #444444;
+
+    .left {
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: Montserrat;
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      .icon {
+        font-size: 0.95rem;
+      }
+      a {
+        transition: all 0.5s;
+        &:hover {
+          color: #29a56c;
+        }
+      }
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

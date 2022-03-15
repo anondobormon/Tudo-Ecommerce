@@ -38,7 +38,7 @@ const CheckOutSteps = ({ activeStep }) => {
   ];
   return (
     <>
-      <Box sx={{ width: "50%" }}>
+      <Box sx={{ width: "100%" }}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((item, index) => (
             <Step

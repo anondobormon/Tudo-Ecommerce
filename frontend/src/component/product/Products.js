@@ -1,6 +1,10 @@
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import { Container } from "@mui/material";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-import Typography from "@mui/material/Typography";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
@@ -12,7 +16,9 @@ import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
-import "./Product.css";
+import SubHeader from "../Layout/SubHeader/SubHeader";
+import "./Product.scss";
+import Search from "./Search";
 
 const categories = [
   "Laptop",
@@ -52,6 +58,10 @@ function Products() {
   const priceHandler = (event, newValue) => {
     setPrice(newValue);
   };
+  const handleCheck = (e, category) => {
+    console.log(e);
+    setCategory(category);
+  };
 
   return (
     <>
@@ -61,63 +71,88 @@ function Products() {
         <div>
           <MetaData title="PRODUCTS -- TUDO STORE" />
           <Header />
-          <h2 className="productsHeading">Products</h2>
-          <div className="products">
-            {products &&
-              products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
-          </div>
-
-          <div className="filterBox">
-            <Box>
-              <Typography variant="subtitle1" gutterBottom component="div">
-                Price
-              </Typography>
-              <Slider
-                value={price}
-                onChange={priceHandler}
-                valueLabelDisplay="auto"
-                min={0}
-                max={3000}
-              />
-            </Box>
-            <Box>
-              <Typography variant="subtitle1" gutterBottom component="div">
-                Category
-              </Typography>
-              <ul className="categoryBox">
-                {categories.map((category) => (
-                  <li
-                    className="category_link"
-                    key={category}
-                    onClick={() => setCategory(category)}
-                  >
-                    {category}
-                  </li>
-                ))}
-              </ul>
-            </Box>
-          </div>
-
-          {resultPerPage < productsCount && (
-            <div className="paginationBox">
-              <Pagination
-                activePage={currentPage}
-                itemsCountPerPage={resultPerPage}
-                totalItemsCount={productsCount}
-                onChange={setCurrentPageNo}
-                nextPageText="Next"
-                prevPageText="Prev"
-                firstPageText="1st"
-                lastPageText="Last"
-                itemClass="page-item"
-                linkClass="page-link"
-                activeClass="pageItemActive"
-                activeLinkClass="pageLinkActive"
-              />
+          <SubHeader />
+          <Container>
+            <div className="productHeader">
+              <h2 className="productsHeading">All Products</h2>
+              <div className="search">
+                <Search />
+              </div>
             </div>
-          )}
+
+            <div className="products">
+              <div className="filterBox">
+                <Box className="cateBox">
+                  <h2 className="cateTitle">Filter Products by</h2>
+                </Box>
+                <Box className="box">
+                  <h2 className="title">Price</h2>
+                  <Slider
+                    value={price}
+                    onChange={priceHandler}
+                    valueLabelDisplay="auto"
+                    min={0}
+                    max={3000}
+                  />
+                </Box>
+                <Box className="box">
+                  <h2 className="title">Category</h2>
+                  <ul className="categoryBox">
+                    {categories.map((category) => (
+                      <li
+                        className="category_link"
+                        key={category}
+                        onClick={() => setCategory(category)}
+                      >
+                        {category}
+                      </li>
+                    ))}
+                    {/* {categories.map((category) => (
+                      <div>
+                        <input
+                          type="checkbox"
+                          name=""
+                          id={category}
+                          onClick={(e) => handleCheck(e, category)}
+                        />
+                        <label htmlFor={category}>{category}</label>
+                      </div>
+                    ))} */}
+                  </ul>
+                </Box>
+              </div>
+              <div className="product">
+                {products &&
+                  products.map((product) => (
+                    <ProductCard key={product._id} product={product} />
+                  ))}
+              </div>
+            </div>
+            <hr />
+            {resultPerPage < productsCount && (
+              <div className="paginationBox">
+                <p className="qty">Product Showing 08 out of 120</p>
+                <Pagination
+                  activePage={currentPage}
+                  itemsCountPerPage={resultPerPage}
+                  totalItemsCount={productsCount}
+                  onChange={setCurrentPageNo}
+                  nextPageText={<ChevronRightIcon className="icon" />}
+                  prevPageText={<ChevronLeftIcon className="icon" />}
+                  firstPageText={
+                    <KeyboardDoubleArrowLeftIcon className="icon" />
+                  }
+                  lastPageText={
+                    <KeyboardDoubleArrowRightIcon className="icon" />
+                  }
+                  itemClass="page-item"
+                  linkClass="page-link"
+                  activeClass="pageItemActive"
+                  activeLinkClass="pageLinkActive"
+                />
+              </div>
+            )}
+          </Container>
           <Footer />
         </div>
       )}

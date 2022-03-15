@@ -1,0 +1,21 @@
+.searchBox {
+  display: flex;
+  padding: 0.5rem 0rem 0.5rem 0.7rem;
+  background-color: #f8f8f8;
+  max-width: 400px;
+  justify-content: space-between;
+  align-items: center;
+  input {
+    border: none;
+    outline: none;
+    background: transparent;
+  }
+  button {
+    border: none;
+    background: transparent;
+    margin: 0 1rem;
+    svg {
+      color: gray;
+    }
+  }
+}

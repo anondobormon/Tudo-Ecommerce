@@ -4,8 +4,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { loadUser } from "./actions/userAction";
-import "./App.css";
-import Dashboard from "./component/Admin/Dashboard.js";
+import "./App.scss";
+import Dashboard from "./component/Admin/Dashboard";
+import NewProduct from "./component/Admin/NewProduct";
+import OrderList from "./component/Admin/OrderList";
+import ProcessOrder from "./component/Admin/ProcessOrder";
+import ProductList from "./component/Admin/ProductList";
+import UpdateProduct from "./component/Admin/UpdateProduct.js";
 import Cart from "./component/cart/Cart";
 import ConfirmOrder from "./component/cart/ConfirmOrder";
 import OrderSuccess from "./component/cart/OrderSuccess";
@@ -120,8 +125,48 @@ function App() {
       <Route
         path="/admin/dashboard"
         element={
-          <ProtectedRoute>
+          <ProtectedRoute isAdmin={true}>
             <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/products"
+        element={
+          <ProtectedRoute isAdmin={true}>
+            <ProductList />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/product"
+        element={
+          <ProtectedRoute isAdmin={true}>
+            <NewProduct />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/product/:id"
+        element={
+          <ProtectedRoute isAdmin={true}>
+            <UpdateProduct />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/orders"
+        element={
+          <ProtectedRoute isAdmin={true}>
+            <OrderList />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/order/:id"
+        element={
+          <ProtectedRoute isAdmin={true}>
+            <ProcessOrder />
           </ProtectedRoute>
         }
       />

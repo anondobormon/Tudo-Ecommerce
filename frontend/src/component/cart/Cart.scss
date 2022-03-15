@@ -1,0 +1,166 @@
+.cartPage {
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 1.5rem 0;
+    line-height: 1.8;
+    text-transform: capitalize;
+    font-family: Montserrat;
+  }
+  .cartHeader {
+    display: flex;
+    gap: 20px;
+
+    .cartInfo {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      .cartHeaderItem {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p {
+          font-weight: 600;
+          font-size: 1rem;
+        }
+      }
+      .cartContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 1rem 0 0 0;
+        .cartInput {
+          display: flex;
+          align-items: center;
+          button {
+            width: 40px;
+            height: 40px;
+            border-radius: 3px;
+            border: 1px solid lightgray;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            cursor: pointer;
+            .icon {
+              font-weight: 300;
+              color: gray;
+              font-size: 0.9rem;
+            }
+            &:active {
+              color: green;
+              border: 1px solid green;
+              background-color: rgba(0, 128, 0, 0.233);
+              .icon {
+                color: green;
+              }
+            }
+          }
+          input {
+            height: 40px;
+            width: 40px;
+            padding-left: 12px;
+            border: 1px solid lightgray;
+            outline: none;
+          }
+        }
+      }
+    }
+    .cartGrossProfit {
+      flex: 1;
+      border: 1px solid lightgray;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-top: 1px solid lightgray;
+      max-height: 400px;
+      .profitHeader {
+        margin: 0.2rem 0 0 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+        font-family: montserrat;
+      }
+      .cartGrossProfitBox {
+        .item {
+          margin: 0.5rem 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          p {
+            font-weight: 600;
+            margin: 0;
+            font-size: 0.9rem;
+            font-family: montserrat;
+          }
+        }
+      }
+      .checkOutBtn {
+        display: flex;
+        justify-content: end;
+        gap: 20px;
+        flex-direction: column;
+        align-self: end;
+        .item {
+          flex: 1;
+          margin: 0.5rem 0;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          justify-content: space-between !important;
+          p {
+            font-weight: 600;
+            margin: 0;
+            margin-right: 10px;
+            font-size: 0.9rem;
+            font-family: montserrat;
+          }
+        }
+        button {
+          margin: 1.2rem 0 0.5rem 0;
+          padding: 0.5rem 1rem;
+          border: none;
+          background-color: #29a56c;
+          color: #fff;
+          transition: all 0.5s;
+          text-transform: uppercase;
+          cursor: pointer;
+          &:hover {
+            background-color: #0d7a48;
+          }
+        }
+      }
+    }
+  }
+}
+
+.emptyCart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 5rem;
+  .icon {
+    font-size: 4.5rem;
+  }
+  p {
+    font-weight: 300;
+    font-size: 1rem;
+    margin: 0.5rem 0 0 0;
+  }
+  a {
+    margin: 0.5rem 0 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #29a56c;
+    color: #fff;
+    transition: all 0.5s;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    cursor: pointer;
+    &:hover {
+      background-color: #0d7a48;
+    }
+  }
+}

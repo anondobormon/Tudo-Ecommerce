@@ -1,0 +1,48 @@
+.testimonial {
+  height: auto;
+  padding: 2rem 0 0rem 0;
+  background-color: #f9f9f9;
+  .testimonialInfo {
+    .top {
+      max-width: 1200px;
+      background-color: #fff;
+      padding: 1.2rem 0;
+      position: relative;
+      p {
+        font-size: 0.8rem;
+        font-weight: 200;
+        margin: 0.3rem auto;
+        max-width: 800px;
+        color: gray;
+      }
+      h4 {
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-align: center;
+        font-family: montserrat;
+        margin-top: 0.5rem;
+      }
+      .rating {
+        max-width: 300px;
+        margin: 0.5rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .bottom {
+      margin-bottom: 0.5rem;
+      div {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 2.5rem auto;
+        overflow: hidden;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

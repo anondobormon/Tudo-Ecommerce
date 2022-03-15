@@ -1,7 +1,8 @@
+import SearchIcon from "@mui/icons-material/Search";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MetaData from "../Layout/MetaData";
-import "./Search.css";
+import "./Search.scss";
 
 function Search() {
   let navigate = useNavigate();
@@ -27,7 +28,9 @@ function Search() {
           onChange={(e) => setKeyword(e.target.value)}
         />
         {/* <input type="submit" value="Search" /> */}
-        <button onClick={searchSubmitHandler}>Search</button>
+        <button onClick={searchSubmitHandler}>
+          <SearchIcon />
+        </button>
       </from>
     </div>
   );
