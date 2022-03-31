@@ -1,6 +1,4 @@
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import { Button } from "@mui/material";
+import { Rating } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect } from "react";
 import { useAlert } from "react-alert";
@@ -12,17 +10,21 @@ import {
   getAdminProducts,
 } from "../../actions/productAction";
 import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
+import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
-import "./ProductList.css";
+import Navbar from "./Navbar";
+import "./ProductList.scss";
 import Sidebar from "./Sidebar";
 
 const ProductList = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { error, products } = useSelector((state) => state.products);
-  const { error: deletedError, isDeleted } = useSelector(
-    (state) => state.product
-  );
+  const { error, products, loading } = useSelector((state) => state.products);
+  const {
+    error: deletedError,
+    isDeleted,
+    loading: deleteLoading,
+  } = useSelector((state) => state.product);
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -37,47 +39,81 @@ const ProductList = () => {
       dispatch({ type: DELETE_PRODUCT_RESET });
     }
     dispatch(getAdminProducts());
-  }, [error, alert, dispatch, isDeleted]);
+  }, [error, alert, dispatch, isDeleted, deletedError]);
 
   const columns = [
     { field: "id", headerName: "Product Id", minWidth: 200, flex: 0.5 },
-    { field: "name", headerName: "Name", minWidth: 350, flex: 1 },
+    {
+      field: "name",
+      headerName: "Name",
+      minWidth: 350,
+      flex: 0.6,
+
+      renderCell: (params) => {
+        return (
+          <div className="cellWrapper">
+            <div className="image">
+              <img src={params.getValue(params.id, "image")} alt="" />
+            </div>
+            <div className="name">{params.getValue(params.id, "name")}</div>
+          </div>
+        );
+      },
+    },
     {
       field: "stock",
       headerName: "Stock",
       type: "number",
       minWidth: 150,
-      flex: 0.3,
+      flex: 0.1,
+    },
+    {
+      field: "ratings",
+      headerName: "Ratings",
+      type: "number",
+      minWidth: 150,
+      flex: 0.2,
+      renderCell: (params) => {
+        <Rating
+          name="size-small"
+          defaultValue={params.getValue(params.id, "ratings")}
+          size="small"
+        />;
+      },
     },
     {
       field: "price",
       headerName: "Price",
       type: "number",
       minWidth: 270,
-      flex: 0.5,
+      flex: 0.15,
     },
     {
       field: "actions",
-      flex: 0.3,
+      flex: 0.5,
       headerName: "Actions",
       type: "number",
       minWidth: 150,
       sortable: false,
       renderCell: (params) => {
         return (
-          <>
-            <Link to={`/admin/product/${params.getValue(params.id, "id")}`}>
-              <EditIcon />
+          <div className="actions">
+            <Link
+              className="edit"
+              to={`/admin/product/${params.getValue(params.id, "id")}`}
+            >
+              Edit
             </Link>
 
-            <Button
+            <button
+              className="deletebtn"
               onClick={() =>
                 deleteProductHandler(params.getValue(params.id, "id"))
               }
             >
-              <DeleteIcon />
-            </Button>
-          </>
+              Delete
+            </button>
+          </div>
         );
       },
     },
@@ -96,28 +132,42 @@ const ProductList = () => {
         stock: item.stock,
         price: item.price,
         name: item.name,
+        image: item.images[0].url,
+        ratings: item.ratings,
       });
     });
 
   return (
-    <div>
-      <MetaData title={"All Products - Admin"} />
-      <div className="dashboard">
-        <Sidebar />
-        <div className="productListContainer">
-          <h2 id="productListHeading">ALL PRODUCTS</h2>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div>
+          <MetaData title={"All Products - Admin"} />
 
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={10}
-            disableSelectionOnClick
-            className="productListTable"
-            autoHeight
-          />
+          <div className="productList">
+            <Sidebar />
+            <div className="productListContainer">
+              {deleteLoading && <Loader />}
+
+              <Navbar />
+              <div className="dataTable">
+                <h2 className="productListHeading">All Products</h2>
+
+                <DataGrid
+                  rows={rows}
+                  columns={columns}
+                  pageSize={10}
+                  disableSelectionOnClick
+                  className="productListTable"
+                  autoHeight
+                />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

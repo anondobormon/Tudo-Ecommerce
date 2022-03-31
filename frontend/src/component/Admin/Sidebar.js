@@ -1,56 +1,179 @@
-import AddIcon from "@mui/icons-material/Add";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ListAltIcon from "@mui/icons-material/ListAlt";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import PostAddIcon from "@mui/icons-material/PostAdd";
-import RateReviewIcon from "@mui/icons-material/RateReview";
-import TreeItem from "@mui/lab/TreeItem";
-import TreeView from "@mui/lab/TreeView";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import RateReviewOutlinedIcon from "@mui/icons-material/RateReviewOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import StoreMallDirectoryOutlinedIcon from "@mui/icons-material/StoreMallDirectoryOutlined";
 import React from "react";
-import { Link } from "react-router-dom";
-import Logo from "../../images/profile.png";
-import "./Sidebar.css";
+import { Link, NavLink } from "react-router-dom";
+import "./Sidebar.scss";
+
+const data = [
+  {
+    id: 1,
+    link: "dashboard",
+    title: "Dashboard",
+    icon: <DashboardIcon className="icon" />,
+  },
+  {
+    id: 2,
+    link: "users",
+    title: "Users",
+    icon: <PersonOutlineOutlinedIcon className="icon" />,
+  },
+  {
+    id: 3,
+    link: "products",
+    title: "Products",
+    icon: <CreditCardOutlinedIcon className="icon" />,
+  },
+  {
+    id: 1,
+    link: "dashboard",
+    title: "Dashboard",
+    icon: <DashboardIcon className="icon" />,
+  },
+  {
+    id: 1,
+    link: "dashboard",
+    title: "Dashboard",
+    icon: <DashboardIcon className="icon" />,
+  },
+  {
+    id: 1,
+    link: "dashboard",
+    title: "Dashboard",
+    icon: <DashboardIcon className="icon" />,
+  },
+  {
+    id: 1,
+    link: "dashboard",
+    title: "Dashboard",
+    icon: <DashboardIcon className="icon" />,
+  },
+];
 
 const Sidebar = () => {
   return (
-    <div>
-      <div className="sidebar">
-        <Link to="/">
-          <img src={Logo} alt="Ecommerce" />
-        </Link>
-        <Link to="/admin/dashboard">
-          <p>Dashboard</p>
-        </Link>
+    <div className="sidebar">
+      <div className="top">
+        <Link to="/">TUDO</Link>
+      </div>
 
-        <TreeView
-          defaultCollapseIcon={<ExpandMoreIcon />}
-          defaultExpandIcon={<ChevronRightIcon />}
+      <div className="center">
+        <p className="title">MAIN</p>
+        <NavLink
+          style={({ isActive }) => {
+            return {
+              color: isActive ? "#7451f8" : "",
+              backgroundColor: isActive ? "#e2daff" : "",
+            };
+          }}
+          to={`/admin/dashboard`}
         >
-          <TreeItem nodeId="1" label="Products">
-            <Link to="/admin/products">
-              <TreeItem nodeId="2" label="All" icon={<PostAddIcon />} />
-            </Link>
-            <Link to="/admin/product">
-              <TreeItem nodeId="3" label="Create" icon={<AddIcon />} />
-            </Link>
-          </TreeItem>
-        </TreeView>
-        <Link to="/admin/orders">
-          <p>
-            <ListAltIcon /> Orders
-          </p>
+          <DashboardIcon className="icon" /> <span>Dashboard</span>
+        </NavLink>
+        <p className="title">LIST</p>
+
+        <NavLink
+          style={({ isActive }) => {
+            return {
+              color: isActive ? "#7451f8" : "",
+              backgroundColor: isActive ? "#e2daff" : "",
+            };
+          }}
+          to={`/admin/users`}
+        >
+          <PersonOutlineOutlinedIcon className="icon" /> <span>Users</span>
+        </NavLink>
+
+        <NavLink
+          style={({ isActive }) => {
+            return {
+              color: isActive ? "#7451f8" : "",
+              backgroundColor: isActive ? "#e2daff" : "",
+            };
+          }}
+          to={`/admin/products`}
+        >
+          <CreditCardOutlinedIcon className="icon" />
+          <span>Products</span>
+        </NavLink>
+
+        <NavLink
+          style={({ isActive }) => {
+            return {
+              color: isActive ? "#7451f8" : "",
+              backgroundColor: isActive ? "#e2daff" : "",
+            };
+          }}
+          to={`/admin/orders`}
+        >
+          <StoreMallDirectoryOutlinedIcon className="icon" />{" "}
+          <span>Orders</span>
+        </NavLink>
+
+        <NavLink
+          style={({ isActive }) => {
+            return {
+              color: isActive ? "#7451f8" : "",
+              backgroundColor: isActive ? "#e2daff" : "",
+            };
+          }}
+          to={`/admin/orders`}
+        >
+          <AccountCircleOutlinedIcon className="icon" /> <span>Profile</span>
+        </NavLink>
+        <p className="title">SETTING</p>
+
+        <NavLink
+          style={({ isActive }) => {
+            return {
+              color: isActive ? "#7451f8" : "",
+              backgroundColor: isActive ? "#e2daff" : "",
+            };
+          }}
+          to={`/admin/setting`}
+        >
+          <SettingsOutlinedIcon className="icon" /> <span>Settings</span>
+        </NavLink>
+
+        <NavLink
+          style={({ isActive }) => {
+            return {
+              color: isActive ? "#7451f8" : "",
+              backgroundColor: isActive ? "#e2daff" : "",
+            };
+          }}
+          to={`/admin/product`}
+        >
+          <AddBoxOutlinedIcon className="icon" /> <span>Create Product</span>
+        </NavLink>
+        <p className="title">USER</p>
+
+        <NavLink
+          style={({ isActive }) => {
+            return {
+              color: isActive ? "#7451f8" : "",
+              backgroundColor: isActive ? "#e2daff" : "",
+            };
+          }}
+          to={`/admin/reviews`}
+        >
+          <RateReviewOutlinedIcon className="icon" />
+          <span>Reviews</span>
+        </NavLink>
+
+        <Link to="">
+          <ExitToAppOutlinedIcon className="icon" /> <span>Logout</span>
         </Link>
-        <Link to="/admin/users">
-          <p>
-            <PeopleAltIcon /> Users
-          </p>
-        </Link>
-        <Link to="/admin/reviews">
-          <p>
-            <RateReviewIcon /> Reviews
-          </p>
-        </Link>
+      </div>
+      <div className="bottom">
+        <div className="colorOption"></div>
+        <div className="colorOption"></div>
       </div>
     </div>
   );

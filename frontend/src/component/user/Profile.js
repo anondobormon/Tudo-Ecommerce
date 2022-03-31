@@ -35,7 +35,7 @@ const Profile = () => {
           <Header />
           <SubHeader />
           <Container>
-            <h2>My Profile</h2>
+            <h2 className="profileHeading">My Profile</h2>
             <div className="profileContainer">
               <div className="left">
                 <div className="avatar">
@@ -44,7 +44,7 @@ const Profile = () => {
                 <div className="links">
                   <Link to="/account">Profile</Link>
                   <Link to="/me/update">Update Profile</Link>
-                  <Link to="/order">My Order</Link>
+                  <Link to="/orders">My Order</Link>
                   <Link to="/password/update">Change Password</Link>
                   <button onClick={handleLogout}>Logout</button>
                 </div>

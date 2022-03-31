@@ -1,0 +1,113 @@
+.updateProduct {
+  display: flex;
+
+  .createProductContainer {
+    flex: 6;
+    form {
+      padding: 0.3rem 1rem;
+      display: flex;
+      gap: 20px;
+      width: 100%;
+      .left {
+        flex: 1;
+
+        .items {
+          margin: 0.7rem 0;
+          label {
+            margin: 0.7rem 0 0.2rem 0;
+            font-weight: 500;
+            color: rgb(68, 68, 68);
+            font-family: montserrat;
+            font-size: 0.8rem;
+          }
+          .item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border: 1px solid lightgray;
+            padding: 0.5rem 0.6rem;
+            position: relative;
+            .icon {
+              color: gray;
+              position: absolute;
+              left: 0.5rem;
+              top: 0.4rem;
+              font-size: 1.4rem;
+            }
+            input,
+            textarea,
+            select {
+              border: none;
+              outline: none;
+              margin: 0 0 0.2rem 0.7rem;
+              font-weight: 300;
+              font-size: 0.9rem;
+              width: 100%;
+            }
+          }
+          .des {
+            display: flex;
+            align-items: flex-start;
+          }
+        }
+      }
+      .right {
+        flex: 1;
+        max-height: 90vh;
+
+        #updateProductFormFile {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          label {
+            width: 100%;
+            margin: 1.2rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            border: 3px dashed lightgray;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            img {
+              width: 120px;
+            }
+          }
+          input {
+            display: none;
+          }
+        }
+        .updateProductFormImage {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 10px;
+          flex-wrap: wrap;
+          max-height: 50vh;
+          overflow-y: scroll;
+          .preview {
+            margin: 0.5rem 0;
+            width: 170px;
+            max-height: 170px;
+            overflow: hidden;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+              width: 100%;
+            }
+          }
+        }
+        #updateProductBtn {
+          text-transform: capitalize;
+          border: 1px solid lightgray;
+          width: 25%;
+          color: #000;
+        }
+      }
+    }
+  }
+}

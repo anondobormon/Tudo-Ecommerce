@@ -12,6 +12,7 @@ import {
   DELETE_PRODUCT_SUCCESS,
   NEW_PRODUCT_FAIL,
   NEW_PRODUCT_REQUEST,
+  NEW_PRODUCT_RESET,
   NEW_PRODUCT_SUCCESS,
   NEW_REVIEW_FAIL,
   NEW_REVIEW_REQUEST,
@@ -86,6 +87,7 @@ export const productReducer = (state = {}, action) => {
     case DELETE_PRODUCT_RESET:
       return {
         ...state,
+        loading: false,
         isDeleted: false,
       };
     case UPDATE_PRODUCT_RESET:
@@ -193,9 +195,10 @@ export const newProductReducer = (state = { product: {} }, action) => {
         loading: false,
         error: action.payload,
       };
-    case NEW_REVIEW_RESET:
+    case NEW_PRODUCT_RESET:
       return {
         ...state,
+        loading: false,
         success: false,
       };
     case CLEAR_ERROR:

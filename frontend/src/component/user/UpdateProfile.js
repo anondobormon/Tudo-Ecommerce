@@ -69,7 +69,7 @@ const UpdateProfile = () => {
         name: user.name,
         email: user.email,
       });
-      setAvatarPreview(user?.avatar.url);
+      setAvatarPreview(user?.avatar?.url);
     }
     if (isUpdated) {
       alert.success("Profile Updated Successfully");
@@ -96,12 +96,12 @@ const UpdateProfile = () => {
             <div className="updateContainer-1">
               <div className="left">
                 <div className="avatar">
-                  <img src={user.avatar?.url} alt={user?.name} />
+                  <img src={user?.avatar?.url} alt={user?.name} />
                 </div>
                 <div className="links">
                   <Link to="/account">Profile</Link>
                   <Link to="/me/update">Update Profile</Link>
-                  <Link to="/order">My Order</Link>
+                  <Link to="/orders">My Order</Link>
                   <Link to="/password/update">Change Password</Link>
                   <button onClick={handleLogout}>Logout</button>
                 </div>

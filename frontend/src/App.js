@@ -17,6 +17,7 @@ import OrderSuccess from "./component/cart/OrderSuccess";
 import Payment from "./component/cart/Payment";
 import Shipping from "./component/cart/Shipping";
 import Home from "./component/Home/Home";
+import Loader from "./component/Layout/Loader/Loader";
 import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails.js";
 import ProductDetails from "./component/product/ProductDetails";
@@ -53,6 +54,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/loader" element={<Loader />} />
       <Route path="/order/confirm" element={<ConfirmOrder />} />
 
       <Route

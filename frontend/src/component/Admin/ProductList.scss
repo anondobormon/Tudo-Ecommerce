@@ -1,0 +1,58 @@
+.productList {
+  display: flex;
+  width: 100%;
+
+  h2 {
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin: 1rem 0;
+  }
+
+  .productListContainer {
+    flex: 6;
+    position: relative;
+
+    .dataTable {
+      padding: 0.3rem 1rem;
+
+      .cellWrapper {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        .image {
+          width: 36px;
+          height: 36px;
+          overflow: hidden;
+          border-radius: 50%;
+          object-fit: cover;
+          img {
+            width: 100%;
+          }
+        }
+      }
+
+      .actions {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.8rem;
+
+        .edit {
+          color: purple;
+          background-color: rgba(128, 0, 128, 0.05);
+          padding: 0.2rem 0.5rem;
+          border-radius: 0.2rem;
+          cursor: pointer;
+        }
+
+        .deletebtn {
+          border: none;
+          padding: 0.2rem 0.5rem;
+          cursor: pointer;
+          border-radius: 0.2rem;
+          color: rgb(253, 7, 122);
+          background-color: rgba(253, 7, 122, 0.05);
+        }
+      }
+    }
+  }
+}

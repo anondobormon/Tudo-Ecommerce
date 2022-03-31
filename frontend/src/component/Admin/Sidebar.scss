@@ -1,0 +1,76 @@
+.sidebar {
+  flex: 1;
+  color: #000;
+  border-right: 1px solid lightgray;
+  min-height: 100vh;
+  p {
+    text-align: left;
+  }
+  a {
+    color: #000;
+  }
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    border-bottom: 1px solid lightgray;
+    a {
+      color: #6439ff;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+  }
+
+  .center {
+    padding-left: 10px;
+    .title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #999;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      color: #888;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #e2daff;
+      }
+      .icon {
+        font-size: 22px;
+        color: #7451f8;
+      }
+      span {
+        font-size: 16px;
+        font-weight: 400;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+.bottom {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  gap: 10px;
+  .colorOption {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #7451f8;
+    cursor: pointer;
+    &:nth-child(1) {
+      background-color: whitesmoke;
+    }
+    &:nth-child(2) {
+      background-color: #333;
+    }
+  }
+}

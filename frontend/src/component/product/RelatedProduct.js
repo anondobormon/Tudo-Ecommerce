@@ -13,7 +13,6 @@ const RelatedProduct = () => {
     }
     dispatch(getProduct());
   }, [error, dispatch]);
-  console.log(products);
   return (
     <div className="related-products">
       <h2 className="featuredHeading">Related Products</h2>

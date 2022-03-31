@@ -1,6 +1,3 @@
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect } from "react";
 import { useAlert } from "react-alert";
@@ -9,15 +6,16 @@ import { Link } from "react-router-dom";
 import { deleteOrder, getAllOrders } from "../../actions/orderAction";
 import { clearError } from "../../actions/productAction";
 import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
+import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
-import "./ProductList.css";
+import Navbar from "./Navbar";
+import "./OrderList.scss";
 import Sidebar from "./Sidebar";
 
 const OrderList = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { error, orders } = useSelector((state) => state.allOrders);
-  console.log(orders);
+  const { error, orders, loading } = useSelector((state) => state.allOrders);
   const { error: deletedError, isDeleted } = useSelector(
     (state) => state.order
   );
@@ -49,11 +47,15 @@ const OrderList = () => {
       field: "status",
       headerName: "Status",
       minWidth: 150,
-      flex: 0.5,
-      cellClassName: (params) => {
-        return params.getValue(params.id, "status") === "Delivered"
-          ? "greenColor"
-          : "redColor";
+      flex: 0.2,
+      renderCell: (params) => {
+        return (
+          <div className="orderStatus">
+            <span className={`status ${params.getValue(params.id, "status")}`}>
+              {params.getValue(params.id, "status")}
+            </span>
+          </div>
+        );
       },
     },
     {
@@ -61,37 +63,41 @@ const OrderList = () => {
       headerName: "Items Qty",
       type: "number",
       minWidth: 150,
-      flex: 0.3,
+      flex: 0.2,
     },
     {
       field: "amount",
       headerName: "Amount",
       type: "number",
       minWidth: 270,
-      flex: 0.5,
+      flex: 0.2,
     },
     {
       field: "actions",
-      flex: 0.3,
+      flex: 0.4,
       headerName: "Actions",
       type: "number",
       minWidth: 150,
       sortable: false,
       renderCell: (params) => {
         return (
-          <>
-            <Link to={`/admin/order/${params.getValue(params.id, "id")}`}>
-              <EditIcon />
+          <div className="actions">
+            <Link
+              className="edit"
+              to={`/admin/order/${params.getValue(params.id, "id")}`}
+            >
+              Edit
             </Link>
 
-            <Button
+            <button
+              className="deletebtn"
               onClick={() =>
                 deleteOrderHandler(params.getValue(params.id, "id"))
               }
             >
-              <DeleteIcon />
-            </Button>
-          </>
+              Delete
+            </button>
+          </div>
         );
       },
     },
@@ -114,24 +120,33 @@ const OrderList = () => {
     });
 
   return (
-    <div>
-      <MetaData title={"All Products - Admin"} />
-      <div className="dashboard">
-        <Sidebar />
-        <div className="productListContainer">
-          <h2 id="productListHeading">ALL PRODUCTS</h2>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div>
+          <MetaData title={"All Products - Admin"} />
+          <div className="orderList">
+            <Sidebar />
+            <div className="orderListContainer">
+              <Navbar />
 
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={10}
-            disableSelectionOnClick
-            className="productListTable"
-            autoHeight
-          />
+              <div className="dataTable">
+                <h2>All Orders</h2>
+                <DataGrid
+                  rows={rows}
+                  columns={columns}
+                  pageSize={10}
+                  disableSelectionOnClick
+                  className="productListTable"
+                  autoHeight
+                />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

@@ -1,15 +1,17 @@
-import LaunchIcon from "@mui/icons-material/Launch";
+import { Container } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { clearError, myOrders } from "../../actions/orderAction";
+import { logout } from "../../actions/userAction";
 import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
-import "./MyOrders.css";
+import SubHeader from "../Layout/SubHeader/SubHeader";
+import "./MyOrders.scss";
 
 const MyOrders = () => {
   const alert = useAlert();
@@ -25,30 +27,38 @@ const MyOrders = () => {
       minWidth: 150,
       flex: 1,
     },
-    {
-      field: "status",
-      headerName: "Status",
-      minWidth: 150,
-      flex: 0.5,
-      cellClassName: (params) => {
-        return params.getValue(params.id, "status") === "Delivered"
-          ? "greenColor"
-          : "redColor";
-      },
-    },
+
     {
       field: "itemsQty",
-      headerName: "Items Qty",
+      headerName: "Qty",
       type: "number",
-      minWidth: 150,
+      minWidth: 70,
       flex: 0.3,
     },
     {
       field: "amount",
       headerName: "Amount",
       type: "number",
-      minWidth: 270,
+      minWidth: 50,
       flex: 0.5,
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      minWidth: 100,
+      type: "number",
+      sortable: false,
+      flex: 0.5,
+
+      renderCell: (params) => {
+        return (
+          <div
+            className={`cellWithStatus ${params.getValue(params.id, "status")}`}
+          >
+            {params.getValue(params.id, "status")}
+          </div>
+        );
+      },
     },
     {
       field: "action",
@@ -58,8 +68,11 @@ const MyOrders = () => {
       sortable: false,
       renderCell: (params) => {
         return (
-          <Link to={`/order/${params.getValue(params.id, "id")}`}>
-            <LaunchIcon />
+          <Link
+            className="tableLink"
+            to={`/order/${params.getValue(params.id, "id")}`}
+          >
+            View
           </Link>
         );
       },
@@ -86,27 +99,48 @@ const MyOrders = () => {
     dispatch(myOrders());
   }, [alert, error, dispatch]);
 
+  const handleLogout = () => {
+    dispatch(logout());
+    alert.success("Logout successfully");
+  };
   return (
     <div>
-      <MetaData title={user.name + "- Orders"} />
+      <MetaData title={user?.name + "- Orders"} />
 
       {loading ? (
         <Loader />
       ) : (
         <div>
           <Header />
-          <div className="myOrderPage">
-            <DataGrid
-              rows={rows}
-              pageSize={10}
-              columns={columns}
-              disableSelectionOnClick
-              className="myOrderTable"
-              autoHeight
-            />
+          <SubHeader />
+          <Container>
+            <div className="profileContainer">
+              <div className="left">
+                <div className="avatar">
+                  <img src={user?.avatar?.url} alt={user?.name} />
+                </div>
+                <div className="links">
+                  <Link to="/account">Profile</Link>
+                  <Link to="/me/update">Update Profile</Link>
+                  <Link to="/order">My Order</Link>
+                  <Link to="/password/update">Change Password</Link>
+                  <button onClick={handleLogout}>Logout</button>
+                </div>
+              </div>
+              <div className="right">
+                <p id="myOrderHeading">{user?.name}'s Orders</p>
 
-            <p id="myOrderHeading">{user.name}'s Orders</p>
-          </div>
+                <DataGrid
+                  rows={rows}
+                  pageSize={10}
+                  columns={columns}
+                  disableSelectionOnClick
+                  className="myOrderTable"
+                  autoHeight
+                />
+              </div>
+            </div>
+          </Container>
           <Footer />
         </div>
       )}

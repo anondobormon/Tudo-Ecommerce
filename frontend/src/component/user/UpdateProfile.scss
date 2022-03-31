@@ -55,6 +55,8 @@
       }
       .right {
         flex: 3;
+        border: 1px solid lightgray;
+        padding: 1rem;
         form {
           max-width: 500px;
           #updateImage {

@@ -1,0 +1,78 @@
+.profileContainer {
+  display: flex;
+  gap: 20px;
+  .left {
+    flex: 1;
+    border: 1px solid lightgray;
+    padding: 1rem;
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      a,
+      button {
+        padding: 0.5rem;
+        width: 100%;
+        color: #000;
+        transition: all 0.5s;
+        font-size: 0.8rem;
+        font-weight: 700;
+        font-family: montserrat;
+        border: none;
+        background-color: transparent;
+        text-align: left;
+        &:hover {
+          color: #29a56c;
+          background-color: #29a56b3a;
+        }
+        &:active {
+          color: #20f190;
+          background-color: #29a56b98;
+        }
+      }
+    }
+  }
+  .right {
+    #myOrderHeading {
+      text-align: left;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 0 0 0.5rem 0;
+    }
+    flex: 3;
+    border: 1px solid lightgray;
+    padding: 1rem;
+    .css-1jbbcbn-MuiDataGrid-columnHeaderTitle {
+      font-family: montserrat !important;
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+    p {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+    .css-18lolh3-MuiDataGrid-root {
+      font-weight: 400;
+      font-size: 0.7rem;
+    }
+    .cellWithStatus {
+      padding: 5px;
+      border-radius: 5px;
+      &.Delivered {
+        color: #29a56c;
+        background-color: rgba(0, 128, 0, 0.05);
+      }
+      &.Processing {
+        color: rgb(221, 0, 0);
+        background-color: rgba(211, 0, 0, 0.05);
+      }
+    }
+    .tableLink {
+      padding: 5px;
+      border-radius: 5px;
+      color: #29a56c;
+      background-color: rgba(0, 128, 0, 0.05);
+    }
+  }
+}

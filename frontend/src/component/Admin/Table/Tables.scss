@@ -1,0 +1,20 @@
+.table {
+  .actions {
+    display: flex;
+    gap: 1.5rem;
+    .view {
+      color: purple;
+      background-color: rgba(128, 0, 128, 0.05);
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.2rem;
+      cursor: pointer;
+    }
+    .edit {
+      padding: 0.2rem 0.5rem;
+      cursor: pointer;
+      border-radius: 0.2rem;
+      color: rgb(253, 7, 122);
+      background-color: rgba(253, 7, 122, 0.05);
+    }
+  }
+}

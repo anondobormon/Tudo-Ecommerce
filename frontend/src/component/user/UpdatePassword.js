@@ -5,8 +5,13 @@ import { CircularProgress, Container } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { clearError, loadUser, updatePassword } from "../../actions/userAction";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  clearError,
+  loadUser,
+  logout,
+  updatePassword,
+} from "../../actions/userAction";
 import { UPDATE_PASSWORD_RESET } from "../../constants/userConstants";
 import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
@@ -51,6 +56,11 @@ const UpdatePassword = () => {
       });
     }
   }, [alert, isUpdated, error, user, dispatch, navigate]);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    alert.success("Logout successfully");
+  };
   return (
     <div>
       <Header />
@@ -60,64 +70,82 @@ const UpdatePassword = () => {
       <Container>
         <div className="update">
           <div className="updateContainer">
-            <h2>Update Your Profile</h2>
-            <p>Best Place to Buy Products</p>
+            <h2>Update Password</h2>
 
-            <form
-              className="signUpForm"
-              encType="multipart/form-data"
-              onSubmit={updateSubmit}
-            >
-              <div className="items">
-                <label htmlFor="oldPassword">Old Password</label>
-                <div className="item">
-                  <KeyIcon />
-                  <input
-                    type="password"
-                    placeholder="Old Password"
-                    required
-                    name="oldPassword"
-                    id="oldPassword"
-                    value={oldPassword}
-                    onChange={(e) => setOldPassword(e.target.value)}
-                  />
+            <div className="updateContainer-1">
+              <div className="left">
+                <div className="avatar">
+                  <img src={user?.avatar?.url} alt={user?.name} />
+                </div>
+                <div className="links">
+                  <Link to="/account">Profile</Link>
+                  <Link to="/me/update">Update Profile</Link>
+                  <Link to="/orders">My Order</Link>
+                  <Link to="/password/update">Change Password</Link>
+                  <button onClick={handleLogout}>Logout</button>
                 </div>
               </div>
-              <div className="items">
-                <label htmlFor="newPassword">New Password</label>
-                <div className="item">
-                  <LockOpenIcon />
-                  <input
-                    type="password"
-                    placeholder="New Password"
-                    required
-                    name="newPassword"
-                    id="newPassword"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                  />
-                </div>
+
+              <div className="right">
+                <h3>Update Your Password</h3>
+
+                <form
+                  className="signUpForm"
+                  encType="multipart/form-data"
+                  onSubmit={updateSubmit}
+                >
+                  <div className="items">
+                    <label htmlFor="oldPassword">Old Password</label>
+                    <div className="item">
+                      <KeyIcon />
+                      <input
+                        type="password"
+                        placeholder="Old Password"
+                        required
+                        name="oldPassword"
+                        id="oldPassword"
+                        value={oldPassword}
+                        onChange={(e) => setOldPassword(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="items">
+                    <label htmlFor="newPassword">New Password</label>
+                    <div className="item">
+                      <LockOpenIcon />
+                      <input
+                        type="password"
+                        placeholder="New Password"
+                        required
+                        name="newPassword"
+                        id="newPassword"
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="items">
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <div className="item">
+                      <LockIcon />
+                      <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        required
+                        name="confirmPassword"
+                        id="confirmPassword"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <button type="submit" className="updateButton">
+                    Update
+                    {loading && <CircularProgress color="inherit" />}
+                  </button>
+                </form>
               </div>
-              <div className="items">
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <div className="item">
-                  <LockIcon />
-                  <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    required
-                    name="confirmPassword"
-                    id="confirmPassword"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                  />
-                </div>
-              </div>
-              <button type="submit" className="updateButton">
-                Update
-                {loading && <CircularProgress color="inherit" />}
-              </button>
-            </form>
+            </div>
           </div>
         </div>
       </Container>

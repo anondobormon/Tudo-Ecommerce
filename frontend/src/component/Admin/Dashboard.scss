@@ -1,0 +1,48 @@
+.dashboard {
+  display: flex;
+  .dashboardContainer {
+    flex: 6;
+
+    .widgets,
+    .charts {
+      display: flex;
+      padding: 1rem;
+      gap: 1rem;
+    }
+    .charts {
+      padding: 0.3rem 1rem;
+    }
+    .listContainer {
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      padding: 0.3rem 1rem;
+      border-radius: 0.2rem;
+      margin: 1rem;
+      .listTitle {
+        font-weight: 500;
+        color: gray;
+        margin-bottom: 0.9rem;
+      }
+    }
+  }
+}
+.processing,
+.Processing {
+  color: #ff9d00;
+  background-color: rgba(255, 157, 0, 0.1);
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.2rem;
+}
+.pending,
+.Pending {
+  color: red;
+  background-color: rgba(255, 0, 0, 0.05);
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.2rem;
+}
+.success,
+.Success {
+  color: green;
+  background-color: rgba(0, 128, 0, 0.055);
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.2rem;
+}

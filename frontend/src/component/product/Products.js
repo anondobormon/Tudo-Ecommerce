@@ -34,12 +34,14 @@ function Products() {
   const dispatch = useDispatch();
   const { keyword } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const [price, setPrice] = useState([0, 3000]);
+  const [price, setPrice] = useState([0, 30000]);
   const [category, setCategory] = useState("");
   const alert = useAlert();
 
   const { products, loading, productsCount, resultPerPage, error } =
     useSelector((state) => state.products);
+
+  console.log(products);
 
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
@@ -51,7 +53,6 @@ function Products() {
       dispatch(clearError());
     }
     dispatch(getProduct(keyword, currentPage, price, category));
-    console.log(category);
   }, [dispatch, keyword, currentPage, price, category, alert, error]);
 
   //Filter out with price
@@ -59,7 +60,6 @@ function Products() {
     setPrice(newValue);
   };
   const handleCheck = (e, category) => {
-    console.log(e);
     setCategory(category);
   };
 
