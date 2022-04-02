@@ -39,7 +39,9 @@ const Dashboard = () => {
     },
     earnings: {
       type: "earnings",
-      qty: orders && orders.reduce((acc, item) => acc + item.totalPrice, 0),
+      qty:
+        orders &&
+        Math.floor(orders.reduce((acc, item) => acc + item.totalPrice, 0)),
       url: "/admin/earnings",
     },
     products: {
@@ -71,27 +73,6 @@ const Dashboard = () => {
             <div className="listTitle">Latest Orders</div>
             {orders && <Tables data={orders} />}
           </div>
-
-          {/* <div className="dashboardSummery">
-            <div>
-              <p>Total Amount | 2000 Tk</p>
-            </div>
-            <div className="dashboardSummeryBox2">
-              <Link to="/admin/products">
-                <p>Product</p>
-                <p>{products && products.length}</p>
-              </Link>
-              <Link to="/admin/orders">
-                <p>Orders</p>
-                <p>4</p>
-              </Link>
-              <Link to="/admin/users">
-                <p>Users</p>
-                <p>2</p>
-              </Link>
-            </div>
-          </div> */}
-          {/* <div className="lineChart"><Chart /></div> */}
         </div>
       </div>
     </div>

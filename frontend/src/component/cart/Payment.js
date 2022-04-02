@@ -93,6 +93,7 @@ const Payment = () => {
             status: result.paymentIntent.status,
           };
           dispatch(createOrder(order));
+          localStorage.setItem("cartItems", "");
           navigate("/order/success");
         } else {
           alert.error("There some issue occur while processing payment");

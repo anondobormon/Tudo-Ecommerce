@@ -33,5 +33,23 @@
         }
       }
     }
+    .Processing {
+      color: red;
+      padding: 0.2rem 1rem;
+      border-radius: 5px;
+      background-color: rgba(255, 0, 0, 0.05);
+    }
+    .Shipped {
+      color: purple;
+      padding: 0.2rem 1rem;
+      border-radius: 5px;
+      background-color: rgba(128, 0, 128, 0.05);
+    }
+    .Delivered {
+      color: green;
+      padding: 0.2rem 1rem;
+      border-radius: 5px;
+      background-color: rgba(0, 128, 0, 0.05);
+    }
   }
 }

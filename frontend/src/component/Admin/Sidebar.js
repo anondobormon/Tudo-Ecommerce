@@ -123,7 +123,7 @@ const Sidebar = () => {
               backgroundColor: isActive ? "#e2daff" : "",
             };
           }}
-          to={`/admin/orders`}
+          to={`/admin/profile`}
         >
           <AccountCircleOutlinedIcon className="icon" /> <span>Profile</span>
         </NavLink>

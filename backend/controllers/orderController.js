@@ -85,9 +85,13 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   if (order.orderStatus === "Delivered") {
     return next(new ErrorHandler(`You have Delivered this order`, 400));
   }
-  order.orderItems.forEach(async (o) => {
-    await updateStock(o.product, o.quantity);
-  });
+
+  if (req.body.status === "Shipped") {
+    order.orderItems.forEach(async (o) => {
+      await updateStock(o.product, o.quantity);
+    });
+  }
+
   order.orderStatus = req.body.status;
   if (req.body.status === "Delivered") {
     order.deliveredAt = Date.now();
