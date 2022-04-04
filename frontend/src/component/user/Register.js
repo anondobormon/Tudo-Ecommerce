@@ -16,7 +16,7 @@ import "./Register.scss";
 
 function Register() {
   const [avatarPreview, setAvatarPreview] = useState(profileAvatar);
-  const [avatar, setAvatar] = useState("/profile.png");
+  const [avatar, setAvatar] = useState("https://i.ibb.co/3CY8BNT/profile1.png");
   const [user, setUser] = useState({
     name: "",
     email: "",
