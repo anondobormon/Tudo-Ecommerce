@@ -10,7 +10,10 @@ import NewProduct from "./component/Admin/NewProduct";
 import OrderList from "./component/Admin/OrderList";
 import ProcessOrder from "./component/Admin/ProcessOrder";
 import ProductList from "./component/Admin/ProductList";
+import Reviews from "./component/Admin/Reviews/Reviews";
 import UpdateProduct from "./component/Admin/UpdateProduct.js";
+import UpdateUser from "./component/Admin/Users/UpdateUser";
+import UserList from "./component/Admin/Users/UserList";
 import Cart from "./component/cart/Cart";
 import ConfirmOrder from "./component/cart/ConfirmOrder";
 import OrderSuccess from "./component/cart/OrderSuccess";
@@ -169,6 +172,30 @@ function App() {
         element={
           <ProtectedRoute isAdmin={true}>
             <ProcessOrder />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/users"
+        element={
+          <ProtectedRoute isAdmin={true}>
+            <UserList />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/user/:id"
+        element={
+          <ProtectedRoute isAdmin={true}>
+            <UpdateUser />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/reviews"
+        element={
+          <ProtectedRoute isAdmin={true}>
+            <Reviews />
           </ProtectedRoute>
         }
       />

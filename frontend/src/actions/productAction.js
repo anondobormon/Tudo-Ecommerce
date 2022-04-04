@@ -6,10 +6,16 @@ import {
   ALL_PRODUCT_FAIL,
   ALL_PRODUCT_REQUEST,
   ALL_PRODUCT_SUCCESS,
+  ALL_REVIEW_FAIL,
+  ALL_REVIEW_REQUEST,
+  ALL_REVIEW_SUCCESS,
   CLEAR_ERROR,
   DELETE_PRODUCT_FAIL,
   DELETE_PRODUCT_REQUEST,
   DELETE_PRODUCT_SUCCESS,
+  DELETE_REVIEW_FAIL,
+  DELETE_REVIEW_REQUEST,
+  DELETE_REVIEW_SUCCESS,
   NEW_PRODUCT_FAIL,
   NEW_PRODUCT_REQUEST,
   NEW_PRODUCT_SUCCESS,
@@ -179,6 +185,41 @@ export const updateProduct = (id, productData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_PRODUCT_FAIL,
+      payload: error.response?.data.message,
+    });
+  }
+};
+
+//Get all Reviews Admin
+export const getAllReview = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_REVIEW_REQUEST });
+    console.log(id);
+
+    const { data } = await axios.get(`/api/v1/admin/reviews?id=${id}`);
+
+    dispatch({ type: ALL_REVIEW_SUCCESS, payload: data.reviews });
+  } catch (error) {
+    dispatch({
+      type: ALL_REVIEW_FAIL,
+      payload: error.response?.data.message,
+    });
+  }
+};
+
+//Deleted review of a product
+export const deleteReviews = (reviewId, productId) => async (dispatch) => {
+  try {
+    dispatch({ type: DELETE_REVIEW_REQUEST });
+
+    const { data } = await axios.delete(
+      `/api/v1/admin/reviews?id=${reviewId}&productId=${productId}`
+    );
+
+    dispatch({ type: DELETE_REVIEW_SUCCESS, payload: data.success });
+  } catch (error) {
+    dispatch({
+      type: DELETE_REVIEW_FAIL,
       payload: error.response?.data.message,
     });
   }

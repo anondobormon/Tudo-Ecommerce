@@ -1,0 +1,52 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+
+  .navList {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    ul {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      list-style: none;
+      li {
+        a {
+          font-weight: 700;
+          font-size: 0.7rem;
+          transition: all 0.5s;
+
+          &:hover {
+            color: green;
+            border-bottom: 1px solid green;
+          }
+        }
+      }
+
+      .cart {
+        a {
+          position: relative;
+          span {
+            top: -20px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background-color: rgb(250, 13, 80);
+            position: absolute;
+            font-size: 0.6rem;
+            font-weight: 300;
+          }
+        }
+      }
+    }
+  }
+}

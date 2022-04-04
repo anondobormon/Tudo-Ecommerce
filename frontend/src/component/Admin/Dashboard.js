@@ -3,6 +3,7 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { clearError, getAllOrders } from "../../actions/orderAction";
 import { getAdminProducts } from "../../actions/productAction";
+import { getAllUsers } from "../../actions/userAction";
 import Chart from "./Charts/Chart";
 import Featured from "./Charts/Featured";
 import "./Dashboard.scss";
@@ -16,6 +17,7 @@ const Dashboard = () => {
   const alert = useAlert();
   const { products } = useSelector((state) => state.products);
   const { error, orders } = useSelector((state) => state.allOrders);
+  const { users } = useSelector((state) => state.allUsers);
 
   useEffect(() => {
     if (error) {
@@ -24,12 +26,13 @@ const Dashboard = () => {
     }
     dispatch(getAdminProducts());
     dispatch(getAllOrders());
+    dispatch(getAllUsers());
   }, [dispatch, error, alert]);
 
   let widgetData = {
     user: {
       type: "user",
-      qty: 125,
+      qty: users && users.length,
       url: "/admin/users",
     },
     order: {

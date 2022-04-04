@@ -1,18 +1,19 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { Container } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AccountMenu from "./AccountMenu";
-import "./Header.css";
+import "./Header.scss";
 
 function Header() {
   const { isAuthenticated } = useSelector((state) => state.user);
   const { cartItems } = useSelector((state) => state.cart);
   return (
     <>
-      <div className="navbar">
-        <div className="navContainer main_Container">
+      <Container>
+        <div className="navbar">
           <div className="navLogo">
             <h2>TUDO</h2>
           </div>
@@ -47,7 +48,7 @@ function Header() {
             </ul>
           </div>
         </div>
-      </div>
+      </Container>
     </>
   );
 }
