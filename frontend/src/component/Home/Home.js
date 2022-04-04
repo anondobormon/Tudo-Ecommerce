@@ -6,6 +6,7 @@ import Carousel from "react-material-ui-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { clearError, getProduct } from "../../actions/productAction";
 import Footer from "../Layout/Header/Footer";
+import Header from "../Layout/Header/Header";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
 import Testimonial from "../Testimonial/Testimonial";
@@ -55,7 +56,7 @@ function Home() {
       ) : (
         <div className="home">
           <MetaData title="TUDO STORE" />
-          {/* <Header /> */}
+          <Header />
 
           {/* Header Carousel */}
           <div className="headerCarousel">
