@@ -19,3 +19,9 @@
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .searchBox {
+    min-width: 100%;
+  }
+}

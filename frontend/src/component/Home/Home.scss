@@ -16,6 +16,7 @@ p {
 .home {
   .caroHeader {
     position: relative;
+    overflow: hidden;
 
     .content {
       position: absolute;
@@ -70,6 +71,13 @@ p {
             background-color: #0d7a48;
           }
         }
+      }
+      .description {
+        font-weight: 300;
+        font-size: 0.9rem;
+        color: rgb(137, 136, 136);
+        text-align: left;
+        max-width: 50%;
       }
     }
     img {
@@ -143,4 +151,70 @@ p {
       }
     }
   }
+}
+// Responsive area
+@media only screen and (max-width: 600px) {
+  .home {
+    // Carousel
+    .makeStyles-itemWrapper-18 {
+      height: 500px !important;
+      .caroHeader {
+        .content {
+          top: 8%;
+          h2 {
+            font-size: 2.2rem;
+          }
+          h4 {
+            font-size: 0.9rem;
+            margin: 1rem 0;
+          }
+          .subscribe {
+            max-width: 400px;
+            border-radius: 2rem;
+            padding: 0 0 0 0.4rem;
+
+            div {
+              display: flex;
+              align-items: center;
+              .icon {
+                font-size: 1.2rem;
+              }
+              input {
+                padding-left: 0.3rem;
+                margin-left: 1.5rem;
+                font-size: 0.8rem;
+              }
+            }
+            button {
+              width: 120px;
+              border-radius: 50px;
+              padding: 0.5rem;
+              font-size: 0.8rem;
+            }
+          }
+          .description {
+            font-size: 0.8rem;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+    .products {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+    .newCollection {
+      flex-direction: column;
+      .left,
+      .right {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
 }

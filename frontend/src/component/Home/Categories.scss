@@ -11,7 +11,6 @@
     .bags,
     .watches {
       padding: 0.8rem;
-      background-color: #f7f7f7;
       margin-top: 0.7rem;
       display: flex;
       align-items: center;
@@ -52,6 +51,58 @@
     }
     img {
       width: 100%;
+    }
+  }
+  .clothes {
+    color: green;
+    background-color: rgba(0, 128, 0, 0.1);
+  }
+  .watches {
+    color: rgb(81, 1, 210);
+    background-color: rgba(81, 1, 210, 0.1);
+  }
+  .bags {
+    color: rgb(255, 204, 0);
+    background-color: rgba(255, 204, 0, 0.1);
+  }
+  .shoes {
+    color: rgb(255, 9, 83);
+    background-color: rgb(255, 9, 83, 0.1);
+  }
+}
+
+// Responsive area
+@media only screen and (max-width: 600px) {
+  .categories {
+    flex-direction: column;
+
+    .left {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      gap: 10px;
+
+      .clothes,
+      .shoes,
+      .bags,
+      .watches {
+        padding: 0.5rem;
+        margin-top: 0.6rem;
+        gap: 10px;
+        .cateImg {
+          display: none;
+        }
+        .cateInfo {
+          h4 {
+            font-size: 0.8rem;
+            font-weight: 600;
+          }
+          p {
+            font-weight: 300;
+            font-size: 0.6rem;
+          }
+        }
+      }
     }
   }
 }

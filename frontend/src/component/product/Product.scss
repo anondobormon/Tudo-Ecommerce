@@ -109,3 +109,23 @@
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .productHeader {
+    flex-direction: column;
+    .search {
+      width: 100%;
+    }
+  }
+  .products {
+    flex-direction: column;
+
+    .product {
+      flex: 3;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      position: relative;
+    }
+  }
+}

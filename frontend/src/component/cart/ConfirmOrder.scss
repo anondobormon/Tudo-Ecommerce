@@ -145,3 +145,11 @@
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .confirmOrder {
+    .confirmOrderPage {
+      flex-direction: column;
+    }
+  }
+}

@@ -91,6 +91,7 @@ function Register() {
                   type="file"
                   name="avatar"
                   accept="image/*"
+                  required
                   onChange={registerDataChange}
                 />
               </div>

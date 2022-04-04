@@ -171,7 +171,6 @@ const Shipping = () => {
                     disabled={state ? false : true}
                   />
                 </form>
-                <div className="right">right</div>
               </div>
             </div>
             <RelatedProduct />

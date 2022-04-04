@@ -41,8 +41,6 @@ function Products() {
   const { products, loading, productsCount, resultPerPage, error } =
     useSelector((state) => state.products);
 
-  console.log(products);
-
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   };
@@ -58,9 +56,6 @@ function Products() {
   //Filter out with price
   const priceHandler = (event, newValue) => {
     setPrice(newValue);
-  };
-  const handleCheck = (e, category) => {
-    setCategory(category);
   };
 
   return (
@@ -107,17 +102,6 @@ function Products() {
                         {category}
                       </li>
                     ))}
-                    {/* {categories.map((category) => (
-                      <div>
-                        <input
-                          type="checkbox"
-                          name=""
-                          id={category}
-                          onClick={(e) => handleCheck(e, category)}
-                        />
-                        <label htmlFor={category}>{category}</label>
-                      </div>
-                    ))} */}
                   </ul>
                 </Box>
               </div>

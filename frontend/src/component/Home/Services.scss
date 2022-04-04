@@ -7,7 +7,7 @@
   .item {
     flex: 1;
     border-radius: 8px;
-    border: 1px solid #f7f7f7;
+    border: 1px solid lightgray;
     cursor: pointer;
     transition: all 0.5s;
     display: flex;
@@ -30,6 +30,17 @@
     }
     &:hover {
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+  }
+}
+
+// Responsive area
+@media only screen and (max-width: 600px) {
+  .service {
+    flex-direction: column;
+
+    .item {
+      width: 100%;
     }
   }
 }

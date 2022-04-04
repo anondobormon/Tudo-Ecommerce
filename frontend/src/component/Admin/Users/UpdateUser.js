@@ -34,7 +34,7 @@ const UpdateUser = () => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    if (!user) {
+    if ((!user, userId.length === 24)) {
       dispatch(getUserDetails(userId));
     }
     if (user) {

@@ -10,7 +10,6 @@ function Search() {
 
   const searchSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(keyword);
     if (keyword.trim()) {
       navigate(`/products/${keyword}`);
     } else {
@@ -19,7 +18,7 @@ function Search() {
   };
 
   return (
-    <div>
+    <>
       <MetaData title="SEARCH -- TUDO STORE" />
       <from className="searchBox">
         <input
@@ -32,7 +31,7 @@ function Search() {
           <SearchIcon />
         </button>
       </from>
-    </div>
+    </>
   );
 }
 

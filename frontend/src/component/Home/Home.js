@@ -6,7 +6,6 @@ import Carousel from "react-material-ui-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { clearError, getProduct } from "../../actions/productAction";
 import Footer from "../Layout/Header/Footer";
-import Header from "../Layout/Header/Header";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
 import Testimonial from "../Testimonial/Testimonial";
@@ -19,9 +18,7 @@ import Services from "./Services.js";
 function Home() {
   const alert = useAlert();
   const dispatch = useDispatch();
-  const { loading, error, products, productCount } = useSelector(
-    (state) => state.products
-  );
+  const { loading, error, products } = useSelector((state) => state.products);
 
   useEffect(() => {
     if (error) {
@@ -58,7 +55,7 @@ function Home() {
       ) : (
         <div className="home">
           <MetaData title="TUDO STORE" />
-          <Header />
+          {/* <Header /> */}
 
           {/* Header Carousel */}
           <div className="headerCarousel">
@@ -83,6 +80,13 @@ function Home() {
                           </div>
                           <button>Subscribe</button>
                         </div>
+                        <p className="description">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Nam voluptatem similique fugiat a nemo error
+                          illo quasi sed maxime nostrum voluptate consequuntur
+                          dolorem, nulla reprehenderit optio maiores. Dolorem,
+                          voluptatum maxime?
+                        </p>
                       </div>
                     </Container>
 
@@ -96,18 +100,19 @@ function Home() {
                 ))}
             </Carousel>
           </div>
-
-          <Container maxwidth="xl">
+          {/* Product */}
+          <Container>
             <h2 className="featuredHeading">Our Featured Products</h2>
             <p>Browse The Collection of Top Products</p>
 
-            <div className="products" id="container">
+            <div className="products">
               {products &&
                 products?.map((p) => <Product key={p} product={p} />)}
             </div>
           </Container>
 
-          <Container maxwidth="xl">
+          {/* Collections */}
+          <Container>
             <h2 className="featuredHeading">Mens Most New Collection</h2>
             <p>Browse The Mens Collection</p>
             <div className="newCollection">
@@ -131,16 +136,18 @@ function Home() {
               </div>
             </div>
           </Container>
+
           {/* Categories */}
           <Categories />
+
           {/* Services */}
           <Services />
 
           {/* Offer */}
           <Offer />
+
           {/* Testimonial */}
           <Testimonial />
-          {/* Testimonial */}
 
           <Footer />
         </div>

@@ -6,7 +6,7 @@
 
   .productImage {
     width: 100%;
-    max-height: 300px;
+    height: 273px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     border-radius: 5px;
@@ -23,7 +23,7 @@
       padding: 0.2rem 0.6rem;
       border-radius: 0 2rem 2rem 0;
       font-weight: 300;
-      background-color: #29a56c;
+      background-color: green;
       z-index: 111;
     }
     img {
@@ -98,6 +98,53 @@
         }
         &.sky {
           background-color: #48f3c8;
+        }
+      }
+    }
+  }
+}
+
+// Responsive area
+@media only screen and (max-width: 600px) {
+  .productCards {
+    width: 100%;
+    .productImage {
+      width: 100%;
+
+      span {
+        font-size: 0.6rem;
+      }
+      img {
+        width: 100%;
+        transition: all 0.5s;
+      }
+    }
+    .title {
+      font-size: 0.8rem;
+    }
+    .review {
+      font-size: 0.6rem;
+    }
+
+    .price {
+      span {
+        font-weight: 200;
+        font-size: 0.7rem;
+      }
+      p {
+        font-size: 0.7rem;
+      }
+    }
+    .color {
+      gap: 8px;
+
+      div {
+        width: 22px;
+        height: 22px;
+
+        .colorBox {
+          width: 20px;
+          height: 20px;
         }
       }
     }

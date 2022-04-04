@@ -4,7 +4,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { loadUser } from "./actions/userAction";
-import "./App.scss";
 import Dashboard from "./component/Admin/Dashboard";
 import NewProduct from "./component/Admin/NewProduct";
 import OrderList from "./component/Admin/OrderList";

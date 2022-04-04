@@ -19,7 +19,6 @@ import Header from "../Layout/Header/Header";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
 import SubHeader from "../Layout/SubHeader/SubHeader";
-// import "./ProductDetails.css";
 import "./ProductDetails.scss";
 import RelatedProduct from "./RelatedProduct";
 import ReviewCard from "./ReviewCard.js";
@@ -160,7 +159,7 @@ function ProductDetails() {
                       Status:
                       <b
                         className={
-                          product.stock < 1 ? "redColor" : "greenColor"
+                          product.stock < 1 ? " stockedOut" : "stocked"
                         }
                       >
                         {product.stock < 1 ? "Out of Stock" : "In Stock"}

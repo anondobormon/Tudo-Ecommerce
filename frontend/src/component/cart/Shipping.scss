@@ -73,3 +73,11 @@
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .shippingContainer {
+    .shippingBox {
+      flex-direction: column;
+    }
+  }
+}

@@ -4,14 +4,12 @@ import "./CartItemCard.scss";
 
 const CartItemCard = ({ item, deleteCartItem }) => {
   return (
-    <div>
-      <div className="cartItemCard">
-        <img src={item.image} alt="Img" />
-        <div>
-          <Link to={`/product/${item.product}`}>{item.name}</Link>
-          <span>{`Price: ${item.price}`}</span>
-          <p onClick={() => deleteCartItem(item.product)}>Remove</p>
-        </div>
+    <div className="cartItemCard">
+      <img src={item.image} alt="Img" />
+      <div>
+        <Link to={`/product/${item.product}`}>{item.name}</Link>
+        <span>{`Price: ${item.price}`}</span>
+        <button onClick={() => deleteCartItem(item.product)}>Remove</button>
       </div>
     </div>
   );

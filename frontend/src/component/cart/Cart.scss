@@ -14,6 +14,7 @@
     .cartInfo {
       flex: 2;
       display: flex;
+      justify-content: center;
       flex-direction: column;
       .cartHeaderItem {
         display: flex;
@@ -66,6 +67,12 @@
           }
         }
       }
+    }
+
+    .cartSubTotal {
+      font-size: 1rem;
+      margin: 0;
+      font-weight: 700;
     }
     .cartGrossProfit {
       flex: 1;
@@ -161,6 +168,46 @@
     cursor: pointer;
     &:hover {
       background-color: #0d7a48;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .cartHeader {
+    flex-direction: column;
+
+    .cartInfo {
+      .cartHeaderItem {
+        p {
+          font-size: 0.8rem !important;
+          margin: 0 0 0.4rem 0;
+        }
+      }
+      .cartContainer {
+        margin: 0.8rem 0 0 0;
+      }
+      .cartContainer {
+        .cartInput {
+          button {
+            width: 30px !important;
+            height: 30px !important;
+            font-weight: 500;
+            .icon {
+              font-weight: 300;
+              color: rgb(0, 0, 0);
+              font-size: 0.8rem;
+            }
+          }
+          input {
+            height: 30px !important;
+            max-width: 40px !important;
+            padding-left: 8px;
+          }
+        }
+        .cartSubTotal {
+          font-size: 0.8rem;
+        }
+      }
     }
   }
 }

@@ -93,9 +93,9 @@ const Cart = () => {
                             <AddIcon className="icon" />
                           </button>
                         </div>
-                        <div className="cartSubTotal">
+                        <p className="cartSubTotal">
                           {item.price * item.quantity} Tk
-                        </div>
+                        </p>
                       </div>
                     ))}
                 </div>
