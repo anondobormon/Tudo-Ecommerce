@@ -49,6 +49,8 @@ function Home() {
     },
   ];
 
+  window.addEventListener("contextmenu", (e) => e.preventDefault());
+
   return (
     <>
       {loading ? (

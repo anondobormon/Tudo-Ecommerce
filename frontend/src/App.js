@@ -21,6 +21,7 @@ import Payment from "./component/cart/Payment";
 import Shipping from "./component/cart/Shipping";
 import Home from "./component/Home/Home";
 import Loader from "./component/Layout/Loader/Loader";
+import Notfound from "./component/Layout/Notfound";
 import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails.js";
 import ProductDetails from "./component/product/ProductDetails";
@@ -49,6 +50,16 @@ function App() {
 
   return (
     <Routes>
+      {stripeApiKey && (
+        <Route
+          path="/process/payment"
+          element={
+            <Elements stripe={loadStripe(stripeApiKey)}>
+              <Payment />
+            </Elements>
+          }
+        />
+      )}
       <Route path="/" element={<Home />} />
       <Route path="/product/:id" element={<ProductDetails />} />
       <Route path="/products" element={<Products />} />
@@ -68,16 +79,7 @@ function App() {
           </ProtectedRoute>
         }
       />
-      {stripeApiKey && (
-        <Route
-          path="/process/payment"
-          element={
-            <Elements stripe={loadStripe(stripeApiKey)}>
-              <Payment />
-            </Elements>
-          }
-        />
-      )}
+
       <Route
         path="/me/update"
         element={
@@ -197,6 +199,12 @@ function App() {
           <ProtectedRoute isAdmin={true}>
             <Reviews />
           </ProtectedRoute>
+        }
+      />
+      <Route path="*" element={<Notfound />} />
+      <Route
+        element={
+          window.location.pathname === "/process/payment" ? null : <Notfound />
         }
       />
     </Routes>

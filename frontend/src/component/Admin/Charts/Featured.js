@@ -3,7 +3,10 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import "./Featured.scss";
 
-const featured = () => {
+const featured = ({ orders }) => {
+  let totalAmount =
+    orders &&
+    Math.floor(orders.reduce((acc, item) => acc + item.totalPrice, 0));
   return (
     <div className="featured">
       <div className="top">
@@ -15,7 +18,7 @@ const featured = () => {
           <CircularProgressbar value={70} text={"70%"} strokeWidth={3} />
         </div>
         <p className="title">Total Sales</p>
-        <p className="amount">$455451</p>
+        <p className="amount">${totalAmount}</p>
         <p className="desc">
           Previous transactions processing. Last payments may not be included
         </p>

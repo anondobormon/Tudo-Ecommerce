@@ -69,7 +69,7 @@ const Dashboard = () => {
             <Widget info={widgetData.products} />
           </div>
           <div className="charts">
-            <Featured />
+            <Featured orders={orders} />
             <Chart />
           </div>
           <div className="listContainer">
