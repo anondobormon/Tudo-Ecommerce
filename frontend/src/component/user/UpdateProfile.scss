@@ -26,32 +26,6 @@
             width: 100%;
           }
         }
-        .links {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          a,
-          button {
-            padding: 0.5rem;
-            width: 100%;
-            color: #000;
-            transition: all 0.5s;
-            font-size: 0.8rem;
-            font-weight: 700;
-            font-family: montserrat;
-            border: none;
-            background-color: transparent;
-            text-align: left;
-            &:hover {
-              color: #29a56c;
-              background-color: #29a56b3a;
-            }
-            &:active {
-              color: #20f190;
-              background-color: #29a56b98;
-            }
-          }
-        }
       }
       .right {
         flex: 3;
@@ -136,6 +110,14 @@
           }
         }
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .update {
+    .updateContainer-1 {
+      flex-direction: column;
     }
   }
 }

@@ -147,15 +147,14 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-//Create new Review and Update the review
+// Create New Review or Update the review
 exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
-  const { rating, comment, productId, avatar } = req.body;
+  const { rating, comment, productId } = req.body;
 
   const review = {
-    user: req.user.id,
+    user: req.user._id,
     name: req.user.name,
     rating: Number(rating),
-    image: avatar,
     comment,
   };
 
@@ -164,8 +163,9 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
   const isReviewed = product.reviews.find(
     (rev) => rev.user.toString() === req.user._id.toString()
   );
+
   if (isReviewed) {
-    product.review.forEach((rev) => {
+    product.reviews.forEach((rev) => {
       if (rev.user.toString() === req.user._id.toString())
         (rev.rating = rating), (rev.comment = comment);
     });
@@ -173,10 +173,13 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
     product.reviews.push(review);
     product.numOfReviews = product.reviews.length;
   }
+
   let avg = 0;
+
   product.reviews.forEach((rev) => {
     avg += rev.rating;
   });
+
   product.ratings = avg / product.reviews.length;
 
   await product.save({ validateBeforeSave: false });

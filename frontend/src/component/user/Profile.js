@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { logout } from "../../actions/userAction";
 import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
@@ -9,6 +9,7 @@ import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
 import SubHeader from "../Layout/SubHeader/SubHeader";
 import "./Profile.scss";
+import ProfileSidebar from "./ProfileSidebar";
 
 const Profile = () => {
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
@@ -41,13 +42,7 @@ const Profile = () => {
                 <div className="avatar">
                   <img src={user.avatar?.url} alt={user?.name} />
                 </div>
-                <div className="links">
-                  <Link to="/account">Profile</Link>
-                  <Link to="/me/update">Update Profile</Link>
-                  <Link to="/orders">My Order</Link>
-                  <Link to="/password/update">Change Password</Link>
-                  <button onClick={handleLogout}>Logout</button>
-                </div>
+                <ProfileSidebar handleLogout={handleLogout} />
               </div>
               <div className="right">
                 <div className="items">

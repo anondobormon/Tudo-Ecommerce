@@ -23,6 +23,7 @@ const UpdateUser = () => {
   const userId = useParams().id;
 
   const { loading, error, user } = useSelector((state) => state.userDetails);
+  console.log(user, error, userId);
   const {
     loading: updateLoading,
     error: updateError,
@@ -34,7 +35,7 @@ const UpdateUser = () => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    if ((!user, userId.length === 24)) {
+    if (!user && userId.length === 24) {
       dispatch(getUserDetails(userId));
     }
     if (user) {

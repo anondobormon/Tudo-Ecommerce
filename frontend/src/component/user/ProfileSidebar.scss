@@ -1,0 +1,21 @@
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  a,
+  button {
+    padding: 0.5rem;
+    width: 100%;
+    transition: all 0.5s;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: montserrat;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    &:hover {
+      color: #29a56c;
+      background-color: #29a56b3a;
+    }
+  }
+}

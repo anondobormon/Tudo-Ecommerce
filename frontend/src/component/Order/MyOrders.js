@@ -11,6 +11,7 @@ import Header from "../Layout/Header/Header";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
 import SubHeader from "../Layout/SubHeader/SubHeader";
+import ProfileSidebar from "../user/ProfileSidebar";
 import "./MyOrders.scss";
 
 const MyOrders = () => {
@@ -24,7 +25,7 @@ const MyOrders = () => {
     {
       field: "id",
       headerName: "Order ID",
-      minWidth: 150,
+      minWidth: 250,
       flex: 1,
     },
 
@@ -39,13 +40,13 @@ const MyOrders = () => {
       field: "amount",
       headerName: "Amount",
       type: "number",
-      minWidth: 50,
+      minWidth: 120,
       flex: 0.5,
     },
     {
       field: "status",
       headerName: "Status",
-      minWidth: 100,
+      minWidth: 120,
       type: "number",
       sortable: false,
       flex: 0.5,
@@ -64,6 +65,7 @@ const MyOrders = () => {
       field: "action",
       flex: 0.3,
       headerName: "Action",
+      minWidth: 100,
       type: "number",
       sortable: false,
       renderCell: (params) => {
@@ -119,13 +121,8 @@ const MyOrders = () => {
                 <div className="avatar">
                   <img src={user?.avatar?.url} alt={user?.name} />
                 </div>
-                <div className="links">
-                  <Link to="/account">Profile</Link>
-                  <Link to="/me/update">Update Profile</Link>
-                  <Link to="/order">My Order</Link>
-                  <Link to="/password/update">Change Password</Link>
-                  <button onClick={handleLogout}>Logout</button>
-                </div>
+                <ProfileSidebar handleLogout={handleLogout} />
+                
               </div>
               <div className="right">
                 <p id="myOrderHeading">{user?.name}'s Orders</p>

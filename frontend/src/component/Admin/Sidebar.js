@@ -11,51 +11,6 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Sidebar.scss";
 
-const data = [
-  {
-    id: 1,
-    link: "dashboard",
-    title: "Dashboard",
-    icon: <DashboardIcon className="icon" />,
-  },
-  {
-    id: 2,
-    link: "users",
-    title: "Users",
-    icon: <PersonOutlineOutlinedIcon className="icon" />,
-  },
-  {
-    id: 3,
-    link: "products",
-    title: "Products",
-    icon: <CreditCardOutlinedIcon className="icon" />,
-  },
-  {
-    id: 1,
-    link: "dashboard",
-    title: "Dashboard",
-    icon: <DashboardIcon className="icon" />,
-  },
-  {
-    id: 1,
-    link: "dashboard",
-    title: "Dashboard",
-    icon: <DashboardIcon className="icon" />,
-  },
-  {
-    id: 1,
-    link: "dashboard",
-    title: "Dashboard",
-    icon: <DashboardIcon className="icon" />,
-  },
-  {
-    id: 1,
-    link: "dashboard",
-    title: "Dashboard",
-    icon: <DashboardIcon className="icon" />,
-  },
-];
-
 const Sidebar = () => {
   return (
     <div className="sidebar">

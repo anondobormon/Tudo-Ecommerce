@@ -94,8 +94,6 @@
               text-transform: capitalize;
               max-width: 100%;
               color: #29a56c;
-              background-color: #29a56b3d;
-              border: 1px solid #29a56c;
               font-size: 0.8rem;
               font-weight: 500;
             }
@@ -150,6 +148,21 @@
   .confirmOrder {
     .confirmOrderPage {
       flex-direction: column;
+
+      .left {
+        flex: 2;
+        .orderDetails {
+          .orderBoxLeft {
+            flex-direction: column;
+            gap: 20px;
+          }
+          .confirmCartItems {
+            .cartImg {
+              display: none;
+            }
+          }
+        }
+      }
     }
   }
 }

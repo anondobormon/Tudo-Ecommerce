@@ -20,9 +20,9 @@ const ConfirmOrder = () => {
     0
   );
   const shippingCharge = subtotal > 1000 ? 0 : 200;
-  const tax = subtotal * 0.18;
+  const tax = Math.floor(subtotal * 0.18);
 
-  const totalPrice = subtotal + shippingCharge + tax;
+  const totalPrice = Math.floor(subtotal + shippingCharge + tax);
 
   const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
 
@@ -84,8 +84,8 @@ const ConfirmOrder = () => {
                         </div>
                         <Link to={`/product/${item.product}`}>{item.name}</Link>
                         <span>
-                          {item.quantity} Pcs X {item.price} Tk ={" "}
-                          <b>{item.price * item.quantity} Tk</b>
+                          {item.quantity} X {item.price} =
+                          <b>$ {item.price * item.quantity}</b>
                         </span>
                       </div>
                     ))}

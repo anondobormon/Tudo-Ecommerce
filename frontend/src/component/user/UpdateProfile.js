@@ -4,7 +4,7 @@ import { CircularProgress, Container } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   clearError,
   loadUser,
@@ -17,6 +17,7 @@ import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
 import MetaData from "../Layout/MetaData";
 import SubHeader from "../Layout/SubHeader/SubHeader";
+import ProfileSidebar from "./ProfileSidebar";
 import "./UpdateProfile.scss";
 
 const UpdateProfile = () => {
@@ -98,13 +99,8 @@ const UpdateProfile = () => {
                 <div className="avatar">
                   <img src={user?.avatar?.url} alt={user?.name} />
                 </div>
-                <div className="links">
-                  <Link to="/account">Profile</Link>
-                  <Link to="/me/update">Update Profile</Link>
-                  <Link to="/orders">My Order</Link>
-                  <Link to="/password/update">Change Password</Link>
-                  <button onClick={handleLogout}>Logout</button>
-                </div>
+
+                <ProfileSidebar handleLogout={handleLogout} />
               </div>
 
               <div className="right">
