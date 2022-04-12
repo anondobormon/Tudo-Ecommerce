@@ -9,6 +9,10 @@ import {
   ALL_REVIEW_REQUEST,
   ALL_REVIEW_SUCCESS,
   CLEAR_ERROR,
+  DELETE_CATEGORY_FAIL,
+  DELETE_CATEGORY_REQUEST,
+  DELETE_CATEGORY_RESET,
+  DELETE_CATEGORY_SUCCESS,
   DELETE_PRODUCT_FAIL,
   DELETE_PRODUCT_REQUEST,
   DELETE_PRODUCT_RESET,
@@ -17,6 +21,13 @@ import {
   DELETE_REVIEW_REQUEST,
   DELETE_REVIEW_RESET,
   DELETE_REVIEW_SUCCESS,
+  GET_CATEGORY_FAIL,
+  GET_CATEGORY_REQUEST,
+  GET_CATEGORY_SUCCESS,
+  NEW_CATEGORY_FAIL,
+  NEW_CATEGORY_REQUEST,
+  NEW_CATEGORY_RESET,
+  NEW_CATEGORY_SUCCESS,
   NEW_PRODUCT_FAIL,
   NEW_PRODUCT_REQUEST,
   NEW_PRODUCT_RESET,
@@ -75,11 +86,13 @@ export const productReducer = (state = {}, action) => {
   switch (action.type) {
     case DELETE_PRODUCT_REQUEST:
     case UPDATE_PRODUCT_REQUEST:
+    case DELETE_CATEGORY_REQUEST:
       return {
         ...state,
         loading: true,
       };
     case DELETE_PRODUCT_SUCCESS:
+    case DELETE_CATEGORY_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -92,6 +105,7 @@ export const productReducer = (state = {}, action) => {
         isUpdated: action.payload,
       };
     case DELETE_PRODUCT_RESET:
+    case DELETE_CATEGORY_RESET:
       return {
         ...state,
         loading: false,
@@ -104,6 +118,7 @@ export const productReducer = (state = {}, action) => {
       };
     case DELETE_PRODUCT_FAIL:
     case UPDATE_PRODUCT_FAIL:
+    case DELETE_CATEGORY_FAIL:
       return {
         loading: false,
         error: action.payload,
@@ -270,6 +285,73 @@ export const reviewReducer = (state = {}, action) => {
         error: action.payload,
       };
     case DELETE_REVIEW_RESET:
+      return {
+        ...state,
+        success: false,
+      };
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+//ALL Review Reducer
+export const getCategoryReducer = (state = { categories: [] }, action) => {
+  switch (action.type) {
+    case GET_CATEGORY_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case GET_CATEGORY_SUCCESS:
+      return {
+        loading: false,
+        category: action.payload,
+      };
+    case GET_CATEGORY_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+//New CATEGORY Reducer
+export const newCategoryReducer = (state = {}, action) => {
+  switch (action.type) {
+    case NEW_CATEGORY_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case NEW_CATEGORY_SUCCESS:
+      return {
+        loading: false,
+        success: action.payload,
+      };
+
+    case NEW_CATEGORY_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case NEW_CATEGORY_RESET:
       return {
         ...state,
         success: false,

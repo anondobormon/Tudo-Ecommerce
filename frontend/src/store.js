@@ -10,6 +10,8 @@ import {
   orderReducer,
 } from "./reducers/orderReducer";
 import {
+  getCategoryReducer,
+  newCategoryReducer,
   newProductReducer,
   newReviewReducer,
   productDetailsReducer,
@@ -43,6 +45,8 @@ const reducer = combineReducers({
   userDetails: userDetailsReducer,
   productReviews: productReviewReducer,
   review: reviewReducer,
+  createCategory: newCategoryReducer,
+  getCategory: getCategoryReducer,
 });
 
 let initialState = {

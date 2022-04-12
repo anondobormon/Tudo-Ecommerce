@@ -34,7 +34,7 @@ const OrderList = () => {
       dispatch({ type: DELETE_ORDER_RESET });
     }
     dispatch(getAllOrders());
-  }, [error, alert, dispatch, isDeleted]);
+  }, [error, alert, dispatch, isDeleted, deletedError]);
 
   const columns = [
     {

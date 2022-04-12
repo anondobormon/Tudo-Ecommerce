@@ -9,6 +9,10 @@ const {
   getAdminProducts,
   getProductReviews,
   deleteReview,
+  deleteCategory,
+  createCategory,
+  getSingleCategory,
+  getCategory,
 } = require("../controllers/productController");
 const { updateUserRole, deleteUser } = require("../controllers/userController");
 const { isAuthenticatedUser, authorizedRole } = require("../middleware/auth");
@@ -47,5 +51,24 @@ router
   .route("/admin/reviews")
   .get(getProductReviews)
   .delete(isAuthenticatedUser, deleteReview);
+
+//Create category
+router
+  .route("/admin/category/new")
+  .post(isAuthenticatedUser, authorizedRole("admin"), createCategory);
+
+//Get category
+router
+  .route("/admin/category")
+  .get(isAuthenticatedUser, authorizedRole("admin"), getCategory);
+//Get single category
+router
+  .route("/admin/category/:id")
+  .get(isAuthenticatedUser, authorizedRole("admin"), getSingleCategory);
+
+//Delete category
+router
+  .route("/admin/category/delete")
+  .delete(isAuthenticatedUser, authorizedRole("admin"), deleteCategory);
 
 module.exports = router;

@@ -10,7 +10,11 @@ import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { clearError, getProduct } from "../../actions/productAction";
+import {
+  clearError,
+  getAllCategory,
+  getProduct,
+} from "../../actions/productAction";
 import ProductCard from "../Home/ProductCard";
 import Footer from "../Layout/Header/Footer";
 import Header from "../Layout/Header/Header";
@@ -20,26 +24,21 @@ import SubHeader from "../Layout/SubHeader/SubHeader";
 import "./Product.scss";
 import Search from "./Search";
 
-const categories = [
-  "Laptop",
-  "Footwear",
-  "Bottom",
-  "Tops",
-  "Attire",
-  "Camera",
-  "SmartPhone",
-];
-
 function Products() {
   const dispatch = useDispatch();
   const { keyword } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 30000]);
-  const [category, setCategory] = useState("");
+  const [categoryTitle, setCategoryTitle] = useState("");
+
   const alert = useAlert();
 
   const { products, loading, productsCount, resultPerPage, error } =
     useSelector((state) => state.products);
+
+  const { error: categoryError, category } = useSelector(
+    (state) => state.getCategory
+  );
 
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
@@ -50,8 +49,23 @@ function Products() {
       alert.error(error);
       dispatch(clearError());
     }
-    dispatch(getProduct(keyword, currentPage, price, category));
-  }, [dispatch, keyword, currentPage, price, category, alert, error]);
+    if (categoryError) {
+      alert.error(categoryError);
+      dispatch(clearError());
+    }
+    dispatch(getAllCategory());
+
+    dispatch(getProduct(keyword, currentPage, price, categoryTitle));
+  }, [
+    dispatch,
+    keyword,
+    currentPage,
+    price,
+    categoryTitle,
+    categoryError,
+    alert,
+    error,
+  ]);
 
   //Filter out with price
   const priceHandler = (event, newValue) => {
@@ -93,23 +107,25 @@ function Products() {
                 <Box className="box">
                   <h2 className="title">Category</h2>
                   <ul className="categoryBox">
-                    {categories.map((category) => (
-                      <li
-                        className="category_link"
-                        key={category}
-                        onClick={() => setCategory(category)}
-                      >
-                        {category}
-                      </li>
-                    ))}
+                    {category &&
+                      category.map((cate) => (
+                        <li
+                          className="category_link"
+                          key={cate.title}
+                          onClick={() => setCategoryTitle(cate.title)}
+                        >
+                          {cate.title}
+                        </li>
+                      ))}
                   </ul>
                 </Box>
               </div>
               <div className="product">
-                {products &&
-                  products.map((product) => (
-                    <ProductCard key={product._id} product={product} />
-                  ))}
+                {products
+                  ? products.map((product) => (
+                      <ProductCard key={product._id} product={product} />
+                    ))
+                  : "No product Found"}
               </div>
             </div>
             <hr />

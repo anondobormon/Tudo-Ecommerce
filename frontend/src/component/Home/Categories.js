@@ -50,7 +50,7 @@ const Categories = () => {
         </div>
         <div className="right">
           <div className="categoriesImage">
-            <img src={cateImage} alt="Image" />
+            <img src={cateImage} alt="" />
           </div>
         </div>
       </div>

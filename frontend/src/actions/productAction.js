@@ -16,6 +16,12 @@ import {
   DELETE_REVIEW_FAIL,
   DELETE_REVIEW_REQUEST,
   DELETE_REVIEW_SUCCESS,
+  GET_CATEGORY_FAIL,
+  GET_CATEGORY_REQUEST,
+  GET_CATEGORY_SUCCESS,
+  NEW_CATEGORY_FAIL,
+  NEW_CATEGORY_REQUEST,
+  NEW_CATEGORY_SUCCESS,
   NEW_PRODUCT_FAIL,
   NEW_PRODUCT_REQUEST,
   NEW_PRODUCT_SUCCESS,
@@ -194,7 +200,6 @@ export const updateProduct = (id, productData) => async (dispatch) => {
 export const getAllReview = (id) => async (dispatch) => {
   try {
     dispatch({ type: ALL_REVIEW_REQUEST });
-    console.log(id);
 
     const { data } = await axios.get(`/api/v1/admin/reviews?id=${id}`);
 
@@ -220,6 +225,49 @@ export const deleteReviews = (reviewId, productId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: DELETE_REVIEW_FAIL,
+      payload: error.response?.data.message,
+    });
+  }
+};
+
+//Get all CATEGORIES Admin
+export const getAllCategory = () => async (dispatch) => {
+  try {
+    dispatch({ type: GET_CATEGORY_REQUEST });
+
+    const { data } = await axios.get(`/api/v1/admin/category`);
+
+    dispatch({ type: GET_CATEGORY_SUCCESS, payload: data.categories });
+  } catch (error) {
+    dispatch({
+      type: GET_CATEGORY_FAIL,
+      payload: error.response?.data.message,
+    });
+  }
+};
+
+//Create Product
+export const createCategory = (categoryData) => async (dispatch) => {
+  console.log(categoryData);
+  try {
+    dispatch({
+      type: NEW_CATEGORY_REQUEST,
+    });
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+    const { data } = await axios.post(
+      `/api/v1/admin/category/new`,
+      categoryData,
+      config
+    );
+    dispatch({
+      type: NEW_CATEGORY_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: NEW_CATEGORY_FAIL,
       payload: error.response?.data.message,
     });
   }

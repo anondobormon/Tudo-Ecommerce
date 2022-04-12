@@ -1,4 +1,5 @@
 const Product = require("../models/productModel");
+const Category = require("../models/categoryModel");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ApiFeatures = require("../utils/apiFeatures");
@@ -34,7 +35,7 @@ exports.creatProduct = catchAsyncErrors(async (req, res, next) => {
 
 //GET ALL PRODUCTS
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
-  const resultPerPage = 8;
+  const resultPerPage = 9;
   const productCount = await Product.countDocuments();
   const apiFeatures = new ApiFeatures(Product.find(), req.query)
     .search()
@@ -246,5 +247,119 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
+  });
+});
+
+//Create Category
+exports.createCategory = catchAsyncErrors(async (req, res, next) => {
+  let allCategories = await Category.find();
+
+  const isCategory = allCategories.find(
+    (rev) => rev.title.toString() === req.body.title.toString()
+  );
+
+  let subTitle =
+    isCategory &&
+    isCategory.subTitle.find(
+      (title) => title.letTitle.toString() === req.body.subTitle[0].letTitle
+    );
+
+  if (!isCategory) {
+    req.body.user = req.user.id;
+
+    await Category.create(req.body);
+    res.status(200).json({
+      success: true,
+    });
+  }
+
+  if (isCategory && !subTitle) {
+    isCategory.subTitle.push(req.body.subTitle[0]);
+    await isCategory.save({
+      validateBeforeSave: false,
+    });
+
+    res.status(200).json({
+      success: true,
+    });
+  } else {
+    return next(new ErrorHandler("Category Already Exists", 404));
+  }
+});
+
+//Delete Category
+exports.deleteCategory = catchAsyncErrors(async (req, res, next) => {
+  let categories = await Category.findById(req.body.id);
+
+  if (!categories) {
+    return next(new ErrorHandler("Category not found", 404));
+  }
+  if (categories && req.body.subId) {
+    let title = await categories.subTitle.find(
+      (cate) => cate._id.toString() === req.body.subId
+    );
+
+    if (!title) {
+      return next(new ErrorHandler("Category not found", 404));
+    }
+
+    let sub = await categories.subTitle.filter(
+      (cate) => cate._id.toString() !== req.body.subId
+    );
+
+    if (sub) {
+      const result = await Category.findByIdAndUpdate(
+        req.body.id,
+        {
+          subTitle: sub,
+        },
+        {
+          new: true,
+          runValidators: true,
+          useFindAndModify: false,
+        }
+      );
+
+      res.status(200).json({
+        success: true,
+        result,
+      });
+    }
+  }
+  if (categories && !req.body.subId) {
+    const result = await categories.remove();
+    res.status(200).json({
+      success: true,
+      result,
+    });
+  } else {
+    return next(new ErrorHandler("Category not found", 404));
+  }
+});
+
+//Get Category list
+
+exports.getCategory = catchAsyncErrors(async (req, res, next) => {
+  const categories = await Category.find();
+
+  if (!categories) {
+    return next(new ErrorHandler("Category not found", 404));
+  }
+  res.status(200).json({
+    success: true,
+    categories,
+  });
+});
+
+//Get single Category
+exports.getSingleCategory = catchAsyncErrors(async (req, res, next) => {
+  const category = await Category.findById(req.params.id);
+
+  if (!category) {
+    return next(new ErrorHandler("Category not found", 404));
+  }
+  res.status(200).json({
+    success: true,
+    category,
   });
 });

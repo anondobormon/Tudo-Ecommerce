@@ -108,7 +108,9 @@ function Home() {
 
             <div className="products">
               {products &&
-                products?.map((p) => <Product key={p} product={p} />)}
+                products
+                  ?.slice(0, 7)
+                  .map((p) => <Product key={p} product={p} />)}
             </div>
           </Container>
 

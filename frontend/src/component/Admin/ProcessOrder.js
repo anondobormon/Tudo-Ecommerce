@@ -123,7 +123,7 @@ const ProcessOrder = () => {
                       order.orderItems.map((item) => (
                         <div key={item._id} className="cartItem">
                           <div className="itemImg">
-                            <img src={item.image} alt="Order Image" />
+                            <img src={item.image} alt="" />
                           </div>
                           <div className="info">
                             <p>{item.name} Pice</p>

@@ -1,6 +1,7 @@
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Container, Dialog, DialogContent, Rating } from "@mui/material";
+import parse from "html-react-parser";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import Carousel from "react-material-ui-carousel";
@@ -182,7 +183,7 @@ function ProductDetails() {
               <h3 className="desHeading">Description:</h3>
               <p className="fullDesc">
                 {product.description
-                  ? product.description
+                  ? parse(product.description)
                   : "Description not Available"}
               </p>
             </div>

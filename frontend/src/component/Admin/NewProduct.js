@@ -1,3 +1,5 @@
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import SpellcheckIcon from "@mui/icons-material/Spellcheck";
@@ -6,7 +8,11 @@ import Button from "@mui/material/Button";
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { clearError, createProduct } from "../../actions/productAction";
+import {
+  clearError,
+  createProduct,
+  getAllCategory,
+} from "../../actions/productAction";
 import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
@@ -19,27 +25,21 @@ const NewProduct = () => {
   const alert = useAlert();
 
   const { loading, error, success } = useSelector((state) => state.newProduct);
+  const { error: categoryError, category } = useSelector(
+    (state) => state.getCategory
+  );
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const [categoryTitle, setCategoryTitle] = useState("");
+  const [categorySubTitle, setCategorySubTitle] = useState("");
   const [stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [imagePreview, setImagePreview] = useState([]);
 
-  const categories = [
-    "Laptop",
-    "Footwear",
-    "Bottom",
-    "Articles",
-    "Camera",
-    "SmartPhones",
-  ];
-
   useEffect(() => {
     if (error) {
-      console.log(error);
       alert.error(error.message);
       dispatch(clearError());
     }
@@ -49,11 +49,18 @@ const NewProduct = () => {
       setImagePreview([]);
       setName("");
       setPrice(0);
-      setCategory("");
       setStock(0);
+      setDescription("");
+      setCategoryTitle("");
+      setCategorySubTitle("");
       dispatch({ type: NEW_PRODUCT_RESET });
     }
-  }, [dispatch, error, alert, success]);
+    if (categoryError) {
+      alert.error(error.message);
+      dispatch(clearError());
+    }
+    dispatch(getAllCategory());
+  }, [dispatch, error, alert, success, categoryError]);
 
   const createProductSubmitHandler = (e) => {
     e.preventDefault();
@@ -61,7 +68,8 @@ const NewProduct = () => {
     myForm.set("name", name);
     myForm.set("price", price);
     myForm.set("description", description);
-    myForm.set("category", category);
+    myForm.set("category", categoryTitle);
+    myForm.set("subCategory", categorySubTitle);
     myForm.set("stock", stock);
 
     images.forEach((image) => {
@@ -80,13 +88,23 @@ const NewProduct = () => {
       const reader = new FileReader();
 
       reader.onload = () => {
-        if (reader.readyState == 2) {
+        if (reader.readyState === 2) {
           setImagePreview((old) => [...old, reader.result]);
           setImages((old) => [...old, reader.result]);
         }
       };
       reader.readAsDataURL(file);
     });
+  };
+
+  let subCategory;
+  if (categoryTitle) {
+    subCategory =
+      category && category.find((item) => item.title === categoryTitle);
+  }
+
+  const handleText = (e, editor) => {
+    setDescription(editor.getData());
   };
 
   return (
@@ -136,15 +154,7 @@ const NewProduct = () => {
               <div className="items">
                 <label htmlFor="des">Description</label>
                 <div className="item">
-                  <textarea
-                    name=""
-                    placeholder="Product Description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    cols="20"
-                    id="des"
-                    rows="10"
-                  ></textarea>
+                  <CKEditor editor={ClassicEditor} onChange={handleText} />
                 </div>
               </div>
 
@@ -155,18 +165,42 @@ const NewProduct = () => {
                   <select
                     name=""
                     id="category"
-                    onChange={(e) => setCategory(e.target.value)}
+                    onChange={(e) => setCategoryTitle(e.target.value)}
                   >
                     <option value="">Chose Category</option>
-                    {categories.map((cate) => (
-                      <option key={cate} value={cate}>
-                        {" "}
-                        {cate}
-                      </option>
-                    ))}
+                    {category &&
+                      category.map((cate) => (
+                        <option key={cate.title} value={cate.title}>
+                          {" "}
+                          {cate.title}
+                        </option>
+                      ))}
                   </select>
                 </div>
               </div>
+
+              {subCategory && (
+                <div className="items">
+                  <label htmlFor="category">Categories Subtitle</label>
+                  <div className="item">
+                    <AccountTreeIcon />
+                    <select
+                      name=""
+                      id="category"
+                      onChange={(e) => setCategorySubTitle(e.target.value)}
+                    >
+                      <option value="">Chose Category Subtitle</option>
+                      {subCategory &&
+                        subCategory.subTitle.map((cate) => (
+                          <option key={cate.letTitle} value={cate.letTitle}>
+                            {" "}
+                            {cate.letTitle}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+                </div>
+              )}
 
               <div className="items">
                 <label htmlFor="stock">Stocks</label>
@@ -191,6 +225,7 @@ const NewProduct = () => {
                 </label>
                 <input
                   type="file"
+                  required
                   name="avatar"
                   onChange={createProductImagesChange}
                   multiple
@@ -209,7 +244,15 @@ const NewProduct = () => {
               <Button
                 id="createProductBtn"
                 type="submit"
-                disabled={loading ? true : false}
+                disabled={
+                  loading
+                    ? true
+                    : false || categoryTitle === ""
+                    ? true
+                    : false || categorySubTitle === ""
+                    ? true
+                    : false
+                }
               >
                 Create
               </Button>

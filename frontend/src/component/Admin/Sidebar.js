@@ -1,5 +1,6 @@
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import AddCardIcon from "@mui/icons-material/AddCard";
 import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
@@ -94,6 +95,17 @@ const Sidebar = () => {
           to={`/admin/setting`}
         >
           <SettingsOutlinedIcon className="icon" /> <span>Settings</span>
+        </NavLink>
+        <NavLink
+          style={({ isActive }) => {
+            return {
+              color: isActive ? "#7451f8" : "",
+              backgroundColor: isActive ? "#e2daff" : "",
+            };
+          }}
+          to={`/admin/category`}
+        >
+          <AddCardIcon className="icon" /> <span>Add Category</span>
         </NavLink>
 
         <NavLink
