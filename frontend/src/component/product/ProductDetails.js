@@ -195,8 +195,8 @@ function ProductDetails() {
               {product.reviews && product.reviews[0] ? (
                 <div className="review">
                   {product.reviews &&
-                    product.reviews.map((review) => (
-                      <ReviewCard review={review} />
+                    product.reviews.map((review, index) => (
+                      <ReviewCard key={index} review={review} />
                     ))}
                 </div>
               ) : (

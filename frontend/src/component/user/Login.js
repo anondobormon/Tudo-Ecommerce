@@ -20,7 +20,7 @@ function Login() {
   let navigate = useNavigate();
   let location = useLocation();
 
-  const { loading, user, error, isAuthenticated } = useSelector(
+  const { loading, error, isAuthenticated } = useSelector(
     (state) => state.user
   );
 

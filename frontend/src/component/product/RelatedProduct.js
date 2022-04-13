@@ -6,7 +6,7 @@ import "./RelatedProduct.scss";
 
 const RelatedProduct = () => {
   const dispatch = useDispatch();
-  const { products, error, loading } = useSelector((state) => state.products);
+  const { products, error } = useSelector((state) => state.products);
   useEffect(() => {
     if (error) {
       dispatch(clearError());
@@ -21,7 +21,9 @@ const RelatedProduct = () => {
         {products &&
           products
             .slice(1, 5)
-            .map((product) => <ProductCard product={product} />)}
+            .map((product, index) => (
+              <ProductCard key={index} product={product} />
+            ))}
       </div>
     </div>
   );

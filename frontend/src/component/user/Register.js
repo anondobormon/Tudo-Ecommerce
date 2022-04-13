@@ -36,7 +36,7 @@ function Register() {
     if (e.target.name === "avatar") {
       const reader = new FileReader();
       reader.onload = () => {
-        if (reader.readyState == 2) {
+        if (reader.readyState === 2) {
           setAvatarPreview(reader.result);
           setAvatar(reader.result);
         }
@@ -65,7 +65,7 @@ function Register() {
     if (isAuthenticated) {
       navigate(`/login`);
     }
-  }, [alert, user, isAuthenticated, dispatch, navigate]);
+  }, [alert, user, isAuthenticated, error, dispatch, navigate]);
   return (
     <div>
       <Header />

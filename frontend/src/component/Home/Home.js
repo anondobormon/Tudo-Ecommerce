@@ -63,7 +63,7 @@ function Home() {
             <Carousel>
               {carouselImage &&
                 carouselImage.map((item, i) => (
-                  <div className="caroHeader">
+                  <div key={i} className="caroHeader">
                     <Container maxwidth="lg">
                       <div className="content">
                         <h2>{item.title}</h2>
@@ -110,7 +110,7 @@ function Home() {
               {products &&
                 products
                   ?.slice(0, 7)
-                  .map((p) => <Product key={p} product={p} />)}
+                  .map((p, i) => <Product key={i} product={p} />)}
             </div>
           </Container>
 
